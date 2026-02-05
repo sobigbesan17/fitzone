@@ -1,2 +1,2 @@
-# fitzone
-A Gym Membership GUI Application
+# Fitzone
+FitZone - Enhancing Gym Membership Management and User Experience
