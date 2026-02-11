@@ -53,8 +53,7 @@ background="#333333", foreground="#FFFFFF",
 font=self.manage_font.medium_letters_font) 
         password_label.grid(row=1, column=0, padx=10, pady=5, sticky="w") 
  
-        confirm_password_label = tk.Label(set_password_frame, text="Confirm 
-Password:", background="#333333", foreground="#FFFFFF", 
+        confirm_password_label = tk.Label(set_password_frame, text="Confirm Password:", background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font) 
         confirm_password_label.grid(row=2, column=0, padx=10, pady=5, 
 sticky="w") 
@@ -89,8 +88,7 @@ func())
         individual_error_frame = tk.Frame(self) 
         individual_error_frame.place(relx=0.5, rely=0.155, anchor=tk.CENTER) 
         for error_string in self.error_strings: 
-            error_label = tk.Label(individual_error_frame, text=f"\u26A0 
-{error_string}", background="#D11A17", foreground="#FFFFFF", 
+            error_label = tk.Label(individual_error_frame, text=f"\u26A0 {error_string}", background="#D11A17", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font, width=200) 
             error_label.pack(fill="both", padx=10, pady=2, anchor="w") 
             self.error_labels.append(error_label) 
@@ -113,9 +111,7 @@ font=self.manage_font.medium_letters_font)
         new_password = self.password_entry.get() 
         confirm_password = self.confirm_password_entry.get() 
  
-        self.error_strings = 
-self.validate_credentials.validate_password(new_password, 1, 
-str(confirm_password)) 
+        self.error_strings = self.validate_credentials.validate_password(new_password, 1, str(confirm_password)) 
  
         if self.error_strings: 
             self.display_error_messages() 
@@ -127,8 +123,7 @@ str(confirm_password))
     def update_password(self, member_id, new_password): 
         try: 
             password_handler = PasswordHandler() 
-            hashed_password, salt = 
-password_handler.hash_and_store_password(new_password) 
+            hashed_password, salt = password_handler.hash_and_store_password(new_password) 
             # Update the password for the provided member_id 
             self.cursor.execute(''' 
                 UPDATE Members 
