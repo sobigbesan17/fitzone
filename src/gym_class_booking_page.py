@@ -47,11 +47,11 @@ gym_reviews_callback)
         self.current_date = datetime.date.today().strftime("%Y-%m-%d") 
         self.start_date = self.current_date 
  
-        self.create_booking_page() 
-         try: 
+        self.create_booking_page()
+        try: 
             end_date = self.calculate_end_date(self.start_date, 7) 
  
-          filter_query = '''
+            filter_query = '''
               SELECT GymClasses.ClassID, GymClasses.ClassName,
                      Instructors.InstructorName, GymClasses.AvailableSlots,
                      ClassSchedule.StartTime, ClassSchedule.Duration, ClassSchedule.Date,
@@ -62,22 +62,19 @@ gym_reviews_callback)
               JOIN GymStudios ON GymClasses.StudioID = GymStudios.StudioID
               WHERE Instructors.LocationID = ?
               AND ClassSchedule.Date BETWEEN ? AND ?
-          '''
+           '''
  
             filter_list = [self.location_id] 
              
-            if self.filter_classes["classes"] != "All Classes" and 
-self.filter_classes["classes"]: 
+            if self.filter_classes["classes"] != "All Classes" and self.filter_classes["classes"]: 
                 filter_query += ' AND GymClasses.ClassName = ?' 
                 filter_list.append(self.filter_classes["classes"]) 
  
-            if self.filter_classes["instructor"] != "All Instructors" and 
-self.filter_classes["instructor"]: 
+            if self.filter_classes["instructor"] != "All Instructors" and self.filter_classes["instructor"]: 
                 filter_query += ' AND Instructors.InstructorName = ?' 
                 filter_list.append(self.filter_classes["instructor"]) 
  
-            if self.filter_classes["available_slots"] != "All Slot 
-Availabilities" and self.filter_classes["available_slots"]: 
+            if self.filter_classes["available_slots"] != "All Slot Availabilities" and self.filter_classes["available_slots"]: 
                 filter_query += ' AND GymClasses.AvailableSlots >= ?' 
                 filter_list.append(self.filter_classes["available_slots"][:-1]) 
  
@@ -91,18 +88,16 @@ Availabilities" and self.filter_classes["available_slots"]:
                 for day in self.day_checkboxes: 
                     filtered_day = self.day_checkboxes[day].get() 
                     if filtered_day: 
-                        
-days_to_filter.append(str(list(self.day_checkboxes.keys()).index(day))) 
-                days_str = ','.join(days_to_filter) 
-    def fetch_gym_classes(self):
-                      filter_query += f' AND CAST(strftime("%w", ClassSchedule.Date) 
-AS INT) IN ({days_str})'  
+                        days_to_filter.append(str(list(self.day_checkboxes.keys()).index(day))) 
+                days_str = ','.join(days_to_filter)
+
+            def fetch_gym_classes(self):
+                filter_query += f' AND CAST(strftime("%w", ClassSchedule.Date) AS INT) IN ({days_str})'  
  
             time_of_day_preferences = {}   
  
             for day in self.time_of_day_checkboxes: 
-                time_of_day_preferences[day] = 
-self.time_of_day_checkboxes[day].get() 
+                time_of_day_preferences[day] = self.time_of_day_checkboxes[day].get() 
  
             if any(time_of_day_preferences.values()): 
                 filter_query += ' AND (' 
@@ -116,13 +111,11 @@ self.time_of_day_checkboxes[day].get()
                         end_time_of_day = self.time_ranges[index-1][1] 
                         if not first_condition: 
                             filter_query += ' OR ' 
-                        filter_query += f'(TIME(ClassSchedule.StartTime) BETWEEN 
-"{start_time_of_day}" AND "{end_time_of_day}")' 
+                        filter_query += f'(TIME(ClassSchedule.StartTime) BETWEEN "{start_time_of_day}" AND "{end_time_of_day}")' 
                         first_condition = False 
                 filter_query += ')'  
          
-            filter_query += ' ORDER BY ClassSchedule.Date, 
-ClassSchedule.StartTime' 
+            filter_query += ' ORDER BY ClassSchedule.Date, ClassSchedule.StartTime' 
  
             self.cursor.execute(filter_query, filter_list) 
             self.gym_classes = self.cursor.fetchall() 
@@ -188,10 +181,8 @@ textvariable=self.available_slots_var, values=["All Slot Availabilities"] +
 [str(slot) + "+" for slot in available_slots]) 
         available_slots_combo.pack(side='left', padx=5) 
         available_slots_combo.bind("<<ComboboxSelected>>", 
-self.filter_classes_schedules) 
-        
-available_slots_combo.config(font=self.manage_font.medium_bold_letters_font) 
- 
+self.filter_classes_schedules)
+        available_slots_combo.config(font=self.manage_font.medium_bold_letters_font)
         ttk.Separator(filter_frame, orient="horizontal", 
 style="Custom.TSeparator").pack(fill="x", padx=10, pady=5) 
  
@@ -231,9 +222,7 @@ background="#FFFFFF").pack(side='left', anchor=tk.W, padx=5)
         for time in times_of_day: 
             index += 1 
             var = tk.BooleanVar() 
-            checkbox = tk.Checkbutton(time_of_day_preference_frame, 
-text=f"{time}: {str(self.time_ranges[index-1][0])}-{str(self.time_ranges[index
-1][1])}", variable=var, font=self.manage_font.medium_bold_letters_font, 
+            checkbox = tk.Checkbutton(time_of_day_preference_frame, text=f"{time}: {str(self.time_ranges[index-1][0])}-{str(self.time_ranges[index1][1])}", variable=var, font=self.manage_font.medium_bold_letters_font, 
 background="#FFFFFF", command=self.filter_classes_schedules) 
             checkbox.pack(side='left', padx=2) 
             self.time_of_day_checkboxes[time] = var 
@@ -280,8 +269,7 @@ command=canvas.yview)
  
         self.fetch_gym_location() 
  
-        ttk.Label(self.scrollable_frame, text=f"Upcoming Gym Classes 
-({self.gym_location})", width=135, background="#333333", foreground="#FFFFFF", 
+        ttk.Label(self.scrollable_frame, text=f"Upcoming Gym Classes ({self.gym_location})", width=135, background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.large_bold_heading_font).pack(anchor=tk.W, padx=10, 
 pady=10) 
  
@@ -341,8 +329,7 @@ canvas.configure(scrollregion=canvas.bbox("all")))
         self.timetable_frame = ttk.Frame(self.scrollable_frame) 
         self.timetable_frame.pack(side="left", fill="y", padx=10, pady=10) 
  
-        button_spacing = tk.Label(self.timetable_frame, text=f"From 
-{self.start_date}", font=self.manage_font.medium_bold_letters_font, width=160) 
+        button_spacing = tk.Label(self.timetable_frame, text=f"From {self.start_date}", font=self.manage_font.medium_bold_letters_font, width=160) 
         button_spacing.pack(anchor="center", fill="both", padx=10, pady=10) 
  
         if not self.gym_classes: 
@@ -358,22 +345,21 @@ foreground="#FFFFFF", command=self.reset_filters)
             message_label.pack(anchor="center", padx=10, pady=10) 
  
             ttk.Separator(self.timetable_frame, 
-orient="horizontal").pack(fill="x", padx=10, pady=5) 
- 
-        for gym_class in self.gym_classes: 
-            class_id, class_name, instructor, available_slots, start_time, 
-duration, date, studio, message = gym_class 
- 
+orient="horizontal").pack(fill="x", padx=10, pady=5)
+
+            for gym_class in self.gym_classes: 
+                class_id, class_name, instructor, available_slots, start_time, duration, date, studio, message = gym_class 
+         
             if date not in self.classes_dict: 
-                self.classes_dict[date] = [] 
- 
-            self.classes_dict[date].append(gym_class) 
- 
-        if self.current_view == "grid": 
-            self.create_grid_view() 
-        elif self.current_view == "list": 
-            self.create_list_view() 
- 
+                    self.classes_dict[date] = [] 
+         
+                    self.classes_dict[date].append(gym_class) 
+         
+            if self.current_view == "grid": 
+                    self.create_grid_view() 
+            elif self.current_view == "list": 
+                    self.create_list_view() 
+     
     def create_grid_view(self): 
         for index in self.classes_dict: 
             classes = self.classes_dict[index] 
@@ -387,8 +373,7 @@ font=self.manage_font.medium_bold_heading_font)
             date_label.pack(anchor=tk.W, padx=5, pady=10) 
  
             for gym_class in classes: 
-                class_id, class_name, instructor, available_slots, start_time, 
-duration, date, studio, message = gym_class 
+                class_id, class_name, instructor, available_slots, start_time, duration, date, studio, message = gym_class 
  
                 # Retrieve the slots left for this class based on its class ID 
                 slots_left = self.get_slots_left().get(class_id, 0) 
@@ -422,8 +407,7 @@ font=self.manage_font.small_bold_heading_font, command=lambda class_id=class_id:
 self.set_class_id(class_id)) 
                 book_button.pack(anchor=tk.W, padx=10, pady=10) 
  
-                if not self.is_date_after_current_date(date, start_time) or 
-slots_left <= 0: 
+                if not self.is_date_after_current_date(date, start_time) or slots_left <= 0: 
                     book_button.config(state=tk.DISABLED) 
  
     def set_class_id(self, class_id): 
@@ -460,11 +444,9 @@ height=self.count_classes_per_day(date)+1)
             list_view.heading("#6", text="Message") 
  
             for gym_class in classes: 
-                class_id, class_name, instructor, available_slots, start_time, 
-duration, date, studio, message = gym_class 
+                class_id, class_name, instructor, available_slots, start_time, duration, date, studio, message = gym_class 
                 end_time = self.calculate_end_time(start_time, duration) 
-                list_view.insert("", "end", values=[class_name, f"{start_time} - 
-{end_time}", instructor, available_slots, studio, message]) 
+                list_view.insert("", "end", values=[class_name, f"{start_time} - {end_time}", instructor, available_slots, studio, message]) 
  
     def show_grid_view(self): 
         self.current_view = "grid" 
@@ -481,8 +463,7 @@ font=self.manage_font.medium_bold_heading_font)
         self.refresh_timetable() 
  
     def is_date_after_current_date(self, date, start_time): 
-        input_datetime = datetime.datetime.strptime(f"{date} {start_time}", '%Y
-%m-%d %H:%M') 
+        input_datetime = datetime.datetime.strptime(f"{date} {start_time}", '%Y-%m-%d %H:%M') 
         current_datetime = datetime.datetime.now() 
  
         return input_datetime > current_datetime 
@@ -552,8 +533,7 @@ font=self.manage_font.medium_bold_heading_font)
             self.filter_classes["instructor"] = None 
              
         if self.available_slots_var.get() != "All": 
-            self.filter_classes["available_slots"] = 
-self.available_slots_var.get() 
+            self.filter_classes["available_slots"] = self.available_slots_var.get() 
         else: 
             self.filter_classes["available_slots"] = None 
          
@@ -561,11 +541,9 @@ self.available_slots_var.get()
  
     def get_slots_left(self): 
         try: 
-            self.cursor.execute("SELECT GymClasses.ClassID, 
-GymClasses.AvailableSlots, COUNT(Enrollment.EnrollmentID) as EnrolledCount "  
-                                "FROM GymClasses " 
-                                "LEFT JOIN Enrollment ON GymClasses.ClassID = 
-Enrollment.ClassID " 
+            self.cursor.execute("SELECT GymClasses.ClassID, GymClasses.AvailableSlots, COUNT(Enrollment.EnrollmentID) as EnrolledCount "  
+                                "FROM GymClasses" 
+                                "LEFT JOIN Enrollment ON GymClasses.ClassID = Enrollment.ClassID " 
                                 "GROUP BY GymClasses.ClassID") 
              
             slots_left_data = self.cursor.fetchall() 
