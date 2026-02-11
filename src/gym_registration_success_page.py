@@ -42,11 +42,10 @@ font=self.manage_font.small_bold_heading_font)
     def add_new_member(self): 
         try: 
             insert_query = ''' 
-                INSERT INTO Members (LocationID, DurationID, PackageID, 
-Username, Password, Salt, Gender, Email, DateOfBirth, JoinDate, FirstName, 
-LastName, \ 
-                Address, CountryCode, PhoneNumber, ImagePath, 
-EmailNotifications) \ 
+                INSERT INTO Members (LocationID, DurationID, PackageID,
+                Username, Password, Salt, Gender, Email, DateOfBirth, JoinDate, FirstName,
+                LastName, Address, CountryCode, PhoneNumber, ImagePath,
+                EmailNotifications)  
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
             ''' 
  
