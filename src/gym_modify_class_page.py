@@ -47,7 +47,7 @@ command=self.canvas.yview)
  
         self.canvas.configure(yscrollcommand=self.scrollbar.set) 
         self.canvas.bind("<Configure>", self.configure_canvas)
-          self.content_frame = tk.Frame(self.canvas) 
+        self.content_frame = tk.Frame(self.canvas) 
         self.canvas.create_window((0, 0), window=self.content_frame, 
 anchor="nw") 
  
@@ -63,8 +63,7 @@ anchor="nw")
  
     def find_linked_classes_schedules(self): 
         try: 
-            class_id_query = "SELECT ClassID FROM ClassSchedule WHERE ScheduleID 
-= ?" 
+            class_id_query = "SELECT ClassID FROM ClassSchedule WHERE ScheduleID = ?" 
             self.cursor.execute(class_id_query, (self.class_schedule_id,)) 
             self.class_id_result = self.cursor.fetchone() 
  
@@ -145,8 +144,7 @@ font=self.manage_font.medium_letters_font).pack(anchor=tk.W, padx=10, pady=10)
         for class_schedule in self.find_linked_classes_schedules(): 
             row = index // 5 
             column = index % 5 
-            class_name, instructor, start_time, duration, date, studio, message 
-= class_schedule 
+            class_name, instructor, start_time, duration, date, studio, message = class_schedule 
  
             class_frame = tk.Frame(grid_frame, background="#FFFFFF") 
             class_frame.grid(row=row, column=column, padx=10, pady=10) 
@@ -223,14 +221,12 @@ font=self.manage_font.small_bold_heading_font, command=self.leave_class)
  
     def leave_class(self): 
         try: 
-            class_id = 
-self.find_class_id_from_schedule_id(self.class_schedule_id) 
+            class_id = self.find_class_id_from_schedule_id(self.class_schedule_id) 
              
             self.cursor.execute("DELETE FROM Enrollment WHERE ClassID = ?", 
 (class_id,)) 
             self.conn.commit() 
-            self.success_string = "Success: \n\n \u2705 Class has been removed 
-from your schedule." 
+            self.success_string = "Success: \n\n \u2705 Class has been removed from your schedule." 
         except sqlite3.Error as e: 
             print("Error occurred:", e) 
             error_string = "Error: \n\n \u26A0 Failed to leave the class." 
