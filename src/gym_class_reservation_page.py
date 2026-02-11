@@ -40,8 +40,7 @@ gym_reviews_callback)
         earliest_class_date = self.get_earliest_future_date_for_class() 
  
         if earliest_class_date: 
-            class_name_label = tk.Label(self, text=f"Starting from 
-{earliest_class_date}", font=self.manage_font.large_bold_heading_font) 
+            class_name_label = tk.Label(self, text=f"Starting from {earliest_class_date}", font=self.manage_font.large_bold_heading_font) 
             class_name_label.pack(padx=10, pady=5, anchor="center") 
              
         if self.class_info: 
@@ -132,8 +131,7 @@ self.available_slots - self.enrollment_count, self.instructor_name])
  
                 self.enroll_class_button.configure(state="disabled") 
  
-                success_message = "Success: \n\n \u2705 Enrollment successful! 
-You will be redirected shortly." 
+                success_message = "Success: \n\n \u2705 Enrollment successful! You will be redirected shortly." 
             else: 
                 error_message = "Error: \n\n \u26A0 Enrollment unsucessful!" 
         except sqlite3.Error as e: 
