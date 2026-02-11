@@ -5,4 +5,4 @@ tkcalendar
 matplotlib
 scipy
 pandas
-sklit-learn
+scikit-learn
