@@ -176,8 +176,7 @@ text="Submit CAPTCHA", background="#333333", foreground="#FFFFFF",
 font=self.manage_font.medium_letters_font, command=self.validate_captcha) 
         self.submit_captcha_button.grid(row=25, columnspan=2, pady=10) 
  
-        show_email_notification_checkbox = 
-tk.Checkbutton(self.gym_details_frame, text="I would like Email Notifications on Special Offers, Discounts, Benefits and Classes.", 
+        show_email_notification_checkbox = tk.Checkbutton(self.gym_details_frame, text="I would like Email Notifications on Special Offers, Discounts, Benefits and Classes.", 
 font=self.manage_font.smaller_letters_font, variable=self.email_notifications) 
         show_email_notification_checkbox.grid(row=26, column=1, padx=10, pady=5, sticky=tk.W)
         show_password_checkbox = tk.Checkbutton(self.gym_details_frame, text="I have read and agreed to the Terms and Conditions", 
@@ -238,16 +237,11 @@ canvas.configure(scrollregion=canvas.bbox("all")))
         self.date_of_birth_error_string = "" 
  
         self.collect_all_empty_fields() 
-        self.username_error_string = 
-self.validate_credentials.validate_username(self.username) 
-        self.password_error_string = 
-self.validate_credentials.validate_password(self.password, 0) 
-        self.email_error_string = 
-self.validate_credentials.validate_email(self.email) 
-        self.phone_number_error_string = 
-self.validate_credentials.validate_phone_number(self.phone_number) 
-        self.date_of_birth_error_string = 
-self.validate_credentials.validate_date_of_birth(self.date_of_birth) 
+        self.username_error_string = self.validate_credentials.validate_username(self.username) 
+        self.password_error_string = self.validate_credentials.validate_password(self.password, 0) 
+        self.email_error_string = self.validate_credentials.validate_email(self.email) 
+        self.phone_number_error_string = self.validate_credentials.validate_phone_number(self.phone_number) 
+        self.date_of_birth_error_string = self.validate_credentials.validate_date_of_birth(self.date_of_birth) 
          
         self.destroy_error_messages() 
          
@@ -280,15 +274,13 @@ func=self.payment_registration_callback: func())
         error_string = "" 
         success_string = "" 
          
-        if user_input.lower() == 
-self.captcha_validation.get_captcha_text().lower(): 
+        if user_input.lower() == self.captcha_validation.get_captcha_text().lower(): 
             success_string = "Success: \n\n \u2705 CAPTCHA is correct!" 
  
             self.update_captcha_image() 
             self.user_captcha_entry.delete(0, tk.END) 
         else: 
-            error_string = "Error: \n\n \u26A0 CAPTCHA is incorrect. Please try 
-again." 
+            error_string = "Error: \n\n \u26A0 CAPTCHA is incorrect. Please try again." 
  
         if error_string: 
             self.message_handler.invalid_message(error_string) 
@@ -421,8 +413,7 @@ frame=error_message_frame: frame.destroy())
             entry.config(foreground='black') 
  
     def get_user_account_details(self): 
-        password_hash, salt = 
-self.password_handler.hash_and_store_password(self.password) 
+        password_hash, salt = self.password_handler.hash_and_store_password(self.password) 
         join_date = datetime.datetime.now().date() 
         self.email_notifications_value = int(self.email_notifications.get()) 
      
