@@ -4,3 +4,4 @@ bcrypt
 tkcalendar
 matplotlib
 scipy
+pandas
