@@ -99,10 +99,8 @@ font=self.manage_font.medium_letters_font, width=10)
         self.expiration_month_entry.grid(row=5, column=2, padx=10, pady=5) 
         self.expiration_month_entry.config(foreground='#888888') 
  
-        validate_expiration_month_input = 
-self.register(self.check_numeric_input) 
-        self.expiration_month_entry.config(validate="key", 
-validatecommand=(validate_expiration_month_input, "%P", 2)) 
+        validate_expiration_month_input = self.register(self.check_numeric_input) 
+        self.expiration_month_entry.config(validate="key", validatecommand=(validate_expiration_month_input, "%P", 2)) 
              
         validate_expiration_year_input = self.register(self.check_numeric_input) 
         self.expiration_year_entry.config(validate="key", 
