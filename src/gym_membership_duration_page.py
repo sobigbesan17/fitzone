@@ -118,8 +118,7 @@ MembershipDurations.LocationID = ?;
  
     def display_items(self, items, title): 
         if title == "Daily Prices": 
-            tk.Label(self.duration_frame, text=f"BUY MEMBERSHIP PACKAGE | 
-{self.location_name}", 
+            tk.Label(self.duration_frame, text=f"BUY MEMBERSHIP PACKAGE | {self.location_name}", 
 font=self.manage_font.medium_letters_font).pack(anchor=tk.CENTER, padx=10, 
 pady=10) 
  
@@ -127,8 +126,7 @@ pady=10)
 font=self.manage_font.large_bold_heading_font).pack(anchor=tk.W, padx=80, 
 pady=10) 
              
-            tk.Label(self.duration_frame, text=f"Enjoy the day passes from 
-${self.lowest_daily_price}", 
+            tk.Label(self.duration_frame, text=f"Enjoy the day passes from ${self.lowest_daily_price}", 
 font=self.manage_font.large_bold_letters_font).pack(anchor=tk.CENTER, padx=10, 
 pady=10)
         else: 
@@ -136,13 +134,11 @@ pady=10)
 font=self.manage_font.large_bold_heading_font).pack(anchor=tk.W, padx=80, 
 pady=10) 
              
-            tk.Label(self.duration_frame, text=f"Enjoy the membership packages 
-from ${self.lowest_membership_package_price}", 
+            tk.Label(self.duration_frame, text=f"Enjoy the membership packages from ${self.lowest_membership_package_price}", 
 font=self.manage_font.large_bold_letters_font).pack(anchor=tk.CENTER, padx=10, 
 pady=10)         
  
-        item_frame = tk.Frame(self.duration_frame)  # Create a separate frame to 
-hold the boxes 
+        item_frame = tk.Frame(self.duration_frame)  # Create a separate frame to hold the boxes 
         item_frame.pack(anchor=tk.W, padx=10, pady=10, fill='both') 
  
         row = 0 
@@ -166,8 +162,7 @@ background="#FFFFFF")
  
                 average_price_per_day =  format(price/number_of_day, '.2f') 
  
-                daily_string = f"{number_of_day} days" if item_name >= 2 else 
-f"{item_name} day" 
+                daily_string = f"{number_of_day} days" if item_name >= 2 else f"{item_name} day" 
                  
                 tk.Label(box_frame, text=daily_string, 
 font=self.manage_font.large_bold_heading_font, 
@@ -195,13 +190,11 @@ background="#FFFFFF").pack(anchor=tk.W)
                  
                 tk.Label(box_frame, text=description, 
 font=self.manage_font.medium_bold_letters_font, 
-background="#FFFFFF").pack(anchor=tk.W)  # Display the description for 
-membership packages 
+background="#FFFFFF").pack(anchor=tk.W)  # Display the description for membership packages 
  
                 tk.Label(box_frame, text=f"From $" + str(from_price), 
 font=self.manage_font.large_bold_letters_font, 
-background="#FFFFFF").pack(anchor=tk.W)  # Display the price for both daily 
-prices and membership packages 
+background="#FFFFFF").pack(anchor=tk.W)  # Display the price for both daily prices and membership packages 
                 tk.Button(box_frame, text="Choose", command=lambda id_value = 
 duration_id, name=item_name, price_value=from_price: self.select_package(0, 
 id_value, name, price_value), font=self.manage_font.medium_letters_font, 
@@ -223,8 +216,7 @@ package_price):
         self.box_frame = tk.Frame(self.duration_frame, background="#333333") 
         self.box_frame.pack(padx=10, pady=10) 
  
-        tk.Label(self.box_frame, text=f"Your selected membership plan: 
-{package_name}", font=self.manage_font.large_bold_letters_font, 
+        tk.Label(self.box_frame, text=f"Your selected membership plan: {package_name}", font=self.manage_font.large_bold_letters_font, 
 background="#333333", foreground="#FFFFFF").pack(anchor=tk.W)
         tk.Label(self.box_frame, text=f"From ${package_price}", 
 font=self.manage_font.medium_letters_font, background="#333333", 
