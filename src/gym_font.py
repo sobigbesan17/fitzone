@@ -15,4 +15,3 @@ class ManageFont:
         self.medium_bold_heading_font = ("Koulen", 20, "bold")
         self.large_italic_heading_font = ("Koulen", 22, "italic")
         self.small_bold_heading_font = ("TT Norms Pro ExtraLight", 12, "bold")
-🔑 Key points
