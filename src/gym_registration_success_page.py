@@ -29,8 +29,7 @@ class GymRegistrationSuccessPage(tk.Tk):
         success_label = ttk.Label(registration_success_frame, text="Registration Successful!", font=self.manage_font.large_bold_heading_font) 
         success_label.pack(pady=50) 
  
-        success_message = ttk.Label(registration_success_frame, text="Thank you 
-for registering at FitZone. Your membership has been successfully created.", 
+        success_message = ttk.Label(registration_success_frame, text="Thank you for registering at FitZone. Your membership has been successfully created.", 
 font=self.manage_font.medium_letters_font) 
         success_message.pack(pady=20) 
  
