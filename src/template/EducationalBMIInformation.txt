@@ -1,0 +1,17 @@
+Underweight Description:
+Being underweight means your BMI is below 18.5. This may indicate that your body is not getting enough nutrients, which can lead to weakened immunity, fatigue, and increased risk of health complications. A balanced diet with adequate calories and strength training can help achieve a healthier weight.
+
+Normal Weight Description:
+A BMI between 18.5 and 24.9 is considered normal. This range is associated with lower risk of chronic diseases and generally indicates a healthy balance between weight and height. Maintaining this range involves regular physical activity, balanced nutrition, and healthy lifestyle habits.
+
+Overweight Description:
+A BMI between 25 and 29.9 falls into the overweight category. This may increase the risk of conditions such as high blood pressure, type 2 diabetes, and heart disease. Adopting healthier eating patterns and increasing physical activity can help reduce risks and move toward a healthier BMI.
+
+Obese (Class 1) Description:
+A BMI between 30 and 34.9 is classified as Class 1 obesity. This level of BMI increases the likelihood of cardiovascular disease, diabetes, and joint problems. Structured exercise programs and dietary adjustments are recommended to improve health outcomes.
+
+Obese (Class 2) Description:
+A BMI between 35 and 39.9 is considered Class 2 obesity. At this level, health risks become more significant, including higher chances of metabolic syndrome and severe cardiovascular issues. Professional medical guidance and comprehensive lifestyle changes are strongly advised.
+
+Obese (Class 3) Description:
+A BMI of 40 or greater is classified as Class 3 obesity, sometimes referred to as severe or morbid obesity. This category carries the highest risk for serious health complications. Medical supervision, structured weight management programs, and possible clinical interventions may be necessary to support long-term health.
