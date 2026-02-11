@@ -89,8 +89,7 @@ font=self.manage_font.medium_bold_letters_font, background="#FFFFFF")
  
         highest_workout_streak = self.calculate_highest_workout_streak() 
  
-        self.title_label = tk.Label(self.content_frame, text=f"Current Workout 
-Streak: {workout_streak}", font=self.manage_font.medium_bold_heading_font, 
+        self.title_label = tk.Label(self.content_frame, text=f"Current Workout Streak: {workout_streak}", font=self.manage_font.medium_bold_heading_font, 
 background="#FFFFFF") 
         self.title_label.pack(pady=10) 
  
@@ -157,8 +156,7 @@ font=self.manage_font.medium_bold_letters_font, command=self.show_list_view)
 font=self.manage_font.medium_bold_letters_font) 
         self.date_picker_frame.pack(padx=10, pady=10, fill="both", expand=True) 
          
-        self.date_picker_label = tk.Label(self.date_picker_frame, text="Select 
-Date:", font=self.manage_font.medium_bold_heading_font) 
+        self.date_picker_label = tk.Label(self.date_picker_frame, text="Select Date:", font=self.manage_font.medium_bold_heading_font) 
         self.date_picker_label.pack(pady=5) 
  
         self.date_picker_calendar = Calendar(self.date_picker_frame, 
@@ -226,8 +224,7 @@ Exercises.ExerciseID
         self.workout_names = [f"{name[1]} ({name[2]} minutes)" for name in 
 self.workout_tuples] 
  
-        workout_name_label = ttk.Label(self.add_workout_frame, text="Workout 
-Name:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        workout_name_label = ttk.Label(self.add_workout_frame, text="Workout Name:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         workout_name_label.pack(padx=10, pady=5) 
         self.workout_name_combobox = ttk.Combobox(self.add_workout_frame, values=self.workout_names, font=self.manage_font.medium_bold_letters_font, 
@@ -243,8 +240,7 @@ self.get_selected_workout_id()))
  
     def get_selected_workout_id(self): 
         selected_workout = self.workout_name_combobox.get() 
-        workout_id = 
-self.workout_tuples[self.workout_names.index(selected_workout)][0] 
+        workout_id = self.workout_tuples[self.workout_names.index(selected_workout)][0] 
         return workout_id 
  
     def show_remove_workout(self): 
@@ -282,8 +278,7 @@ background="#333333", foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=50) 
         workout_time_entry.pack(padx=10, pady=5) 
  
-        remove_button = tk.Button(self.remove_workout_frame, text="Remove 
-Workout", font=self.manage_font.medium_bold_heading_font, background="#00BFFF", 
+        remove_button = tk.Button(self.remove_workout_frame, text="Remove Workout", font=self.manage_font.medium_bold_heading_font, background="#00BFFF", 
 foreground="#FFFFFF", width=70, command=lambda: 
 self.remove_workout_by_time(date_entry.get(), workout_time_entry.get())) 
         remove_button.pack(padx=10, pady=10) 
@@ -320,8 +315,7 @@ Exercises.ExerciseID
             return rows 
            
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
             return [] 
  
     def get_all_distinct_workout_types(self):
@@ -377,8 +371,7 @@ the database: {e}")
     def draw_workout_schedule(self): 
         self.clear_workout_schedule() 
  
-        workout_schedule_data = 
-self.get_week_workout_schedule(self.selected_date) 
+        workout_schedule_data = self.get_week_workout_schedule(self.selected_date) 
         self.member_id = 1   
  
         self.date_range = [self.selected_date + timedelta(days=i) for i in 
@@ -392,8 +385,7 @@ range(7)]
             self.create_list_view() 
  
     def create_grid_view(self): 
-        max_workout_count = 
-max(self.calculate_max_workout_count(self.date_range, self.member_id), 1) 
+        max_workout_count = max(self.calculate_max_workout_count(self.date_range, self.member_id), 1) 
  
         self.grid_view = tk.Frame(self.workout_schedule_canvas) 
         self.grid_view.pack(fill="both", expand=True) 
@@ -407,8 +399,7 @@ max(self.calculate_max_workout_count(self.date_range, self.member_id), 1)
             date_frame.grid(row=0, column=index, padx=10, pady=10, 
 sticky="nsew") 
  
-            date_label = tk.Label(date_frame, text=f"{date.strftime('%Y-%m
-%d')}", background="#333333", foreground="#FFFFFF", width=16, 
+            date_label = tk.Label(date_frame, text=f"{date.strftime('%Y-%m-%d')}", background="#333333", foreground="#FFFFFF", width=16, 
 font=self.manage_font.medium_bold_heading_font) 
             date_label.grid(row=0, column=0, sticky="nsew") 
  
@@ -437,8 +428,7 @@ sticky="nsew")
  
                 workout_text = tk.Text(workout_frame, background="#FFFFFF", 
 width=15, height=10, font=self.manage_font.medium_bold_letters_font) 
-                workout_text.insert("1.0", f"{row[0]}\n({row[1]}) - {row[2]} 
-mins") 
+                workout_text.insert("1.0", f"{row[0]}\n({row[1]}) - {row[2]} mins") 
                 workout_text.grid(row=0, column=0, sticky="nsew") 
                 workout_text.config(state="disabled") 
  
@@ -450,14 +440,12 @@ mins")
     def create_list_view(self): 
         distinct_days = self.get_workout_schedule_days() 
  
-        self.title_label = tk.Label(self.workout_schedule_canvas, text=f"From 
-{self.selected_date}", font=self.manage_font.large_bold_heading_font, 
+        self.title_label = tk.Label(self.workout_schedule_canvas, text=f"From {self.selected_date}", font=self.manage_font.large_bold_heading_font, 
 background="white") 
         self.title_label.pack(pady=10) 
  
         if not distinct_days: 
-            tk.Label(self.workout_schedule_canvas, text="No workouts recorded 
-for the selected week.", anchor="center", background = "#FFFFFF", 
+            tk.Label(self.workout_schedule_canvas, text="No workouts recorded for the selected week.", anchor="center", background = "#FFFFFF", 
 font=self.manage_font.medium_bold_letters_font).pack(anchor="center", 
 fill="both", padx=10, pady=10) 
             tk.Label(self.workout_schedule_canvas, text="Please try another week or", background = "#FFFFFF", 
@@ -490,8 +478,7 @@ columns=columns, style="Custom.Treeview", height=4)
             list_view.heading("#3", text="End Time") 
             list_view.heading("#4", text="Workouts") 
  
-            workout_names, workout_times, workout_durations = 
-self.get_workout_schedules_for_date(day) 
+            workout_names, workout_times, workout_durations = self.get_workout_schedules_for_date(day) 
  
             for i in range(len(workout_names)): 
                 workout_name = workout_names[i] 
@@ -528,8 +515,7 @@ self.show_exercises_for_workout(event, name, start_time, end_time))
             return workout_dates 
            
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
             return [] 
  
     def calculate_current_workout_streak(self): 
@@ -542,8 +528,7 @@ the database: {e}")
         current_streak = 0 
  
         for date_str in self.workout_dates: 
-            workout_date = datetime.datetime.strptime(str(date_str), '%Y-%m
-%d').date() 
+            workout_date = datetime.datetime.strptime(str(date_str), '%Y-%m-%d').date() 
  
             if (current_date - workout_date).days == 1: 
                 current_streak += 1 
@@ -563,8 +548,7 @@ the database: {e}")
         max_streak = 0 
         current_streak = 0 
         for date_str in self.workout_dates: 
-            workout_date = datetime.datetime.strptime(str(date_str), '%Y-%m
-%d').date() 
+            workout_date = datetime.datetime.strptime(str(date_str), '%Y-%m-%d').date() 
  
             if (current_date - workout_date).days == 1: 
                 current_streak += 1 
@@ -648,8 +632,7 @@ WorkoutSchedules.MemberID = ?
             return workout_names, workout_time, workout_duration 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
             return [] 
          
     def get_week_workout_schedule(self, start_date=None): 
@@ -670,20 +653,17 @@ the database: {e}")
                         if len(parts) == 2: 
                             time, workout_name = parts 
                             current_workout_time = time   
-                            
-workout_schedule_data[current_date].setdefault(current_workout_time, 
+                            workout_schedule_data[current_date].setdefault(current_workout_time, 
 []).append(workout_name.strip()) 
         return workout_schedule_data 
  
     def goto_date(self): 
         selected_date = self.date_picker_calendar.get_date() 
         try: 
-            self.selected_date = datetime.datetime.strptime(selected_date, "%Y
-%m-%d").date() 
+            self.selected_date = datetime.datetime.strptime(selected_date, "%Y-%m-%d").date() 
             self.update_workout_schedule() 
         except ValueError: 
-            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select 
-a valid date in the format YYYY-MM-DD." 
+            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select a valid date in the format YYYY-MM-DD." 
  
     def goto_selected_date(self): 
         selected_date_str = self.date_picker_calendar.get_date() 
@@ -692,8 +672,7 @@ a valid date in the format YYYY-MM-DD."
 "%Y-%m-%d").date() 
             self.update_workout_schedule() 
         except ValueError: 
-            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select 
-a valid date in the format YYYY-MM-DD." 
+            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select a valid date in the format YYYY-MM-DD." 
         finally: 
             if self.error_string: 
                 self.message_handler.invalid_message(self.error_string) 
@@ -752,10 +731,9 @@ scheduled_time.split(":"))
             if ((new_start_time >= scheduled_start_time and new_start_time < 
 scheduled_end_time) or  
                (new_end_time > scheduled_start_time and new_end_time <= 
-scheduled_end_time)): 
- 
+scheduled_end_time)):
                 self.overlap_count += 1
-          return self.overlap_count > 0 
+        return self.overlap_count > 0 
  
     def add_workout(self, date, time, workout_id): 
         try: 
@@ -784,13 +762,10 @@ scheduled_end_time)):
  
             if missing_fields: 
                 if len(missing_fields) == 1: 
-                    self.error_string = f"Error: \n\n \u26A0 Please enter 
-{missing_fields[0]}" 
+                    self.error_string = f"Error: \n\n \u26A0 Please enter {missing_fields[0]}" 
                 else: 
-                    missing_fields_str = ', '.join(missing_fields[:-1]) + clause 
-+ missing_fields[-1] 
-                    self.error_string += f"Error: \n\n \u26A0 Please enter 
-{missing_fields_str}" 
+                    missing_fields_str = ', '.join(missing_fields[:-1]) + clause + missing_fields[-1] 
+                    self.error_string += f"Error: \n\n \u26A0 Please enter {missing_fields_str}" 
  
             if not self.error_string and not self.check_workout_clashes(date, 
 formatted_time, workout_id):                       
@@ -805,22 +780,18 @@ ScheduledDate, ScheduledTime, WorkoutID)
                             ''', (1, date, formatted_time, workout_id))
 
                     else: 
-                        self.error_string += f"Error: \n\n \u26A0 You cannot add 
-workouts before today's date." 
+                        self.error_string += f"Error: \n\n \u26A0 You cannot add workouts before today's date." 
             else: 
                 if self.check_workout_clashes(date, formatted_time, workout_id): 
-                    self.error_string += f"Error: \n\n \u26A0 This workout time 
-clashes with {self.overlap_count} existing workout." 
+                    self.error_string += f"Error: \n\n \u26A0 This workout time clashes with {self.overlap_count} existing workout." 
  
             self.conn.commit() 
             self.update_workout_schedule() 
  
-            self.info_string = "Message: \n\n \u2139 Your workout will be added 
-if your input is valid." 
+            self.info_string = "Message: \n\n \u2139 Your workout will be added if your input is valid." 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
  
         except Exception as e: 
             messagebox.showerror("Error", f"An error occurred: {e}") 
@@ -839,8 +810,7 @@ the database: {e}")
             self.success_string = "" 
              
             if not workout_date and not workout_time: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter a valid 
-workout date and time" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter a valid workout date and time" 
             elif not workout_date: 
                 self.error_string = f"Error: \n\n \u26A0 Please enter a workout date" 
             elif not workout_time: 
@@ -864,18 +834,16 @@ formatted_workout_time, 1))
  
                     deleted_workout_name = self.cursor.fetchone() 
  
-                    workout_date_str = 
-datetime.datetime.strptime(str(workout_date), '%Y-%m-%d') 
+                    workout_date_str = datetime.datetime.strptime(str(workout_date), '%Y-%m-%d') 
  
                     if workout_date_str > self.current_date: 
                         self.cursor.execute('''DELETE FROM WorkoutSchedules 
-                                            WHERE ScheduledDate = ? AND 
-ScheduledTime = ? AND MemberID = ? 
+                                            WHERE ScheduledDate = ? AND
+                                            ScheduledTime = ? AND MemberID = ? 
                                             ''',(workout_date, 
 formatted_workout_time, 1)) 
                     else: 
-                        self.error_string = f"Error: \n\n \u26A0 You cannot 
-remove workouts before today's date." 
+                        self.error_string = f"Error: \n\n \u26A0 You cannot remove workouts before today's date." 
                         self.message_handler.invalid_message(self.error_string) 
                         return 
                      
@@ -884,12 +852,10 @@ remove workouts before today's date."
                     self.update_workout_schedule() 
                  
                     if deleted_workout_name: 
-                        self.success_string = f"Success: \n\n \u2705 Your 
-workout {deleted_workout_name[0]} has been removed!" 
+                        self.success_string = f"Success: \n\n \u2705 Your workout {deleted_workout_name[0]} has been removed!" 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while deleting the 
-workout: {e}") 
+            messagebox.showerror("Error", f"An error occurred while deleting the workout: {e}") 
             return False 
  
         finally: 
@@ -910,32 +876,27 @@ workout: {e}")
             self.error_string = "" 
  
             if not workout_type and not date: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter date and 
-workout type" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter date and workout type" 
             elif not workout_type: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter workout 
-type" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter workout type" 
             elif not date: 
                 self.error_string = f"Error: \n\n \u26A0 Please enter date" 
             elif not workout_details: 
-                self.error_string = f"Error: \n\n \u26A0 An error occurred: No 
-{workout_type} found for {date}" 
+                self.error_string = f"Error: \n\n \u26A0 An error occurred: No {workout_type} found for {date}" 
  
             if not self.error_string: 
                 ttk.Separator(self.select_workout_frame, 
 orient="horizontal").pack(fill="x", padx=10, pady=5) 
  
                 if workout_details: 
-                    workout_text = "Workout Details:\n" + 
-"\n".join(workout_details) 
+                    workout_text = "Workout Details:\n" + "\n".join(workout_details) 
                     workout_label = ttk.Label(self.select_workout_frame, 
 text=workout_text, font=self.manage_font.medium_bold_letters_font, 
 background="#333333", foreground="#FFFFFF") 
                     workout_label.pack(padx=10, pady=10) 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
  
         except Exception as e: 
             messagebox.showerror("Error", f"An error occurred: {e}") 
@@ -978,8 +939,7 @@ foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=50) 
         date_entry.pack(padx=10, pady=5) 
  
-        workout_time_label = ttk.Label(self.select_workout_frame, text="Workout 
-Time:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        workout_time_label = ttk.Label(self.select_workout_frame, text="Workout Time:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         workout_time_label.pack(padx=10, pady=5) 
         workout_time_entry = ttk.Entry(self.select_workout_frame, 
@@ -997,8 +957,7 @@ self.view_workout_details(date_entry.get(), workout_time_entry.get()))
         self.exercises_title = tk.Frame(self, background="#000000") 
         self.exercises_title.pack(padx=10, pady=0, anchor="center", fill="x") 
  
-        tk.Label(self.exercises_title, text=f"Exercises for Workout: 
-{workout_name} ({workout_start_time}-{workout_end_time})", 
+        tk.Label(self.exercises_title, text=f"Exercises for Workout: {workout_name} ({workout_start_time}-{workout_end_time})", 
 font=self.manage_font.large_bold_heading_font, background="#000000", 
 foreground="#FFFFFF").pack(padx=10, pady=0, fill="x") 
  
@@ -1051,8 +1010,7 @@ background="#333333")
                 exercise_time_frame.pack(padx=10, pady=10, anchor="center", 
 fill="both") 
  
-                exercise_end_time = 
-self.add_minutes_to_time(exercise_start_time, exercise[5]) 
+                exercise_end_time = self.add_minutes_to_time(exercise_start_time, exercise[5]) 
                  
                 tk.Label(exercise_time_frame, text=f"Time: {exercise_start_time} - {exercise_end_time}", font=self.manage_font.medium_bold_heading_font, 
 background="#333333", foreground="#FFFFFF").pack(padx=10, pady=0, fill="x") 
@@ -1070,11 +1028,9 @@ font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, fill="x")
 font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, fill="x") 
                 tk.Label(exercise_frame, text=f"Difficulty: {exercise[3]}", 
 font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, fill="x") 
-                tk.Label(exercise_frame, text=f"Targeted Body Part: 
-{exercise[4]}", font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, 
+                tk.Label(exercise_frame, text=f"Targeted Body Part: {exercise[4]}", font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, 
 fill="x") 
-                tk.Label(exercise_frame, text=f"Duration: {exercise[5]} 
-minutes", font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, 
+                tk.Label(exercise_frame, text=f"Duration: {exercise[5]} minutes", font=self.manage_font.medium_letters_font).pack(padx=10, pady=0, 
 fill="x") 
  
                 exercise_start_time = str(exercise_end_time) 
@@ -1172,11 +1128,9 @@ foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=50) 
             setattr(self, entry_name, entry) 
  
-            if label_text == "Target BMI:" or label_text == "Calories Burn 
-Target:": 
+            if label_text == "Target BMI:" or label_text == "Calories Burn Target:": 
                 validate_entry = self.register(self.check_numeric_input)
-                entry.config(validate="key", validatecommand=(validate_entry, 
-"%P", 3)) 
+                entry.config(validate="key", validatecommand=(validate_entry, "%P", 3)) 
                  
             entry.grid(row=row_num, column=1, padx=10, pady=5) 
             row_num += 1 
@@ -1191,13 +1145,11 @@ width=50)
         self.difficulty_combobox.grid(row=3, column=1, padx=10, pady=5, 
 sticky="w") 
  
-        difficulty_label = ttk.Label(self.frame_in_canvas, text="Difficulty 
-Level:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        difficulty_label = ttk.Label(self.frame_in_canvas, text="Difficulty Level:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         difficulty_label.grid(row=3, column=0, padx=10, pady=5, sticky="w") 
  
-        workout_types_label = ttk.Label(self.frame_in_canvas, text="Workout 
-Type:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        workout_types_label = ttk.Label(self.frame_in_canvas, text="Workout Type:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         workout_types_label.grid(row=1, column=2, padx=10, pady=5, sticky="w") 
  
@@ -1210,8 +1162,7 @@ values=workout_types, width=50)
         self.workout_types_combobox.grid(row=1, column=3, padx=10, pady=5, 
 sticky="w") 
  
-        workout_goals_label = ttk.Label(self.frame_in_canvas, text="Workout 
-Goal:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        workout_goals_label = ttk.Label(self.frame_in_canvas, text="Workout Goal:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         workout_goals_label.grid(row=2, column=2, padx=10, pady=5, sticky="w") 
  
@@ -1246,8 +1197,7 @@ canvas.configure(scrollregion=canvas.bbox("all")))
         recommendation_algorithm = GymWorkoutRecommendationAlgorithm() 
         recommendation_algorithm.load_data() 
         recommendation_algorithm.preprocess_data() 
-        recommended_workout_details = 
-recommendation_algorithm.get_recommendation(user_input) 
+        recommended_workout_details = recommendation_algorithm.get_recommendation(user_input) 
  
         if self.workout_recommendation_frame: 
             self.workout_recommendation_frame.destroy() 
