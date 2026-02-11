@@ -91,12 +91,10 @@ class ValidateCredentials:
                 return "Username must be between 4 and 50 characters." 
  
             if not username.isalnum() or '_' in username: 
-                return "Username can only contain alphanumeric characters and 
-underscores." 
+                return "Username can only contain alphanumeric characters and underscores." 
  
             # Checks if the username already exists in the database 
-            self.cursor.execute("SELECT Username FROM Members WHERE 
-LOWER(Username) = LOWER(?)", (username,)) 
+            self.cursor.execute("SELECT Username FROM Members WHERE LOWER(Username) = LOWER(?)", (username,)) 
             existing_username = self.cursor.fetchone() 
             if existing_username: 
                 return "Username already exists. Please choose a different one." 
@@ -127,8 +125,7 @@ confirm_password=None):
         if not has_uppercase: 
             return "Password must contain at least one uppercase letter." 
         if not has_symbol: 
-            return "Password must contain at least one special symbol 
-(!@#$%^&*()_+{}:;<>,.?~)." 
+            return "Password must contain at least one special symbol (!@#$%^&*()_+{}:;<>,.?~)." 
  
         return error_messages 
  
@@ -141,20 +138,16 @@ confirm_password=None):
         else: 
             parts = email.split('@') 
             if len(parts) != 2: 
-                return "Error: \n\n \u26A0 Email should contain a single '@' 
-symbol." 
+                return "Error: \n\n \u26A0 Email should contain a single '@' symbol." 
             else: 
                 local_part, domain_part = parts 
  
                 if not local_part or not domain_part: 
-                    return "Error: \n\n \u26A0 Local and domain parts cannot be 
-empty." 
+                    return "Error: \n\n \u26A0 Local and domain parts cannot be empty." 
                 elif len(local_part) > 64:   
-                    return "Error: \n\n \u26A0 Local part of the email is too 
-long." 
+                    return "Error: \n\n \u26A0 Local part of the email is too long." 
                 elif len(domain_part) > 255:   
-                    return "Error: \n\n \u26A0 Domain part of the email is too 
-long." 
+                    return "Error: \n\n \u26A0 Domain part of the email is too long." 
                 elif not domain_part.count('.') >= 1: 
                     return "Error: \n\n \u26A0 Email domain should contain at least one '.' symbol." 
                 elif not all(char.isalnum() or char in "!#$%&'*+-/=?^_`{|}~" for 
