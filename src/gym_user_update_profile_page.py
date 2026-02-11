@@ -117,8 +117,7 @@ ImagePath = ?
 address, phone_number, image_path, self.member_id)) 
             self.conn.commit() 
  
-            self.success_string = "Success: \n\n \u2705 User profile updated 
-successfully." 
+            self.success_string = "Success: \n\n \u2705 User profile updated successfully." 
         except sqlite3.Error as e: 
             print("Error occurred:", e) 
             return None  # Return None in case of an error 
