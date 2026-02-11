@@ -68,17 +68,12 @@ Instructors.InstructorID
                 date1_datetime = datetime.datetime.strptime(date1, "%Y-%m-%d") 
                 date2_datetime = datetime.datetime.strptime(date2, "%Y-%m-%d") 
  
-                if date1_datetime > self.current_datetime and date2_datetime > 
-self.current_datetime: 
-                    if date1 == date2 and start_time1 < end_time2 and 
-start_time2 < end_time1: 
-                        if (row1, row2) not in distinct_schedules.values() and 
-(row2, row1) not in distinct_schedules.values(): 
-                            distinct_schedules[len(distinct_schedules) + 1] = 
-(row1, row2) 
+                if date1_datetime > self.current_datetime and date2_datetime > self.current_datetime: 
+                    if date1 == date2 and start_time1 < end_time2 and start_time2 < end_time1: 
+                        if (row1, row2) not in distinct_schedules.values() and (row2, row1) not in distinct_schedules.values(): 
+                            distinct_schedules[len(distinct_schedules) + 1] = (row1, row2) 
  
-        self.sorted_schedules = sorted(distinct_schedules.values(), key=lambda 
-x: (x[0][3], x[0][2])) 
+        self.sorted_schedules = sorted(distinct_schedules.values(), key=lambda x: (x[0][3], x[0][2])) 
  
         if not self.sorted_schedules: 
             self.title_frame = ttk.Label(self, text="Current Class Clashes:", 
@@ -119,8 +114,7 @@ command=self.canvas.yview)
         current_date = None 
         current_group = [] 
  
-        self.title_frame = ttk.Label(self.tree_frame, text="Cureent Class 
-Clashes:", font=self.manage_font.large_bold_heading_font, background="#333333", 
+        self.title_frame = ttk.Label(self.tree_frame, text="Cureent Class Clashes:", font=self.manage_font.large_bold_heading_font, background="#333333", 
 foreground="#FFFFFF") 
         self.title_frame.pack(fill="x") 
  
