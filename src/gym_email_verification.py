@@ -24,8 +24,7 @@ description):
             server.login(sender_email, sender_password) 
  
             subject = title 
-            message = f"{description}\n\nYour verification code is: 
-{verification_code}" 
+            message = f"{description}\n\nYour verification code is: {verification_code}" 
  
             msg = MIMEMultipart() 
             msg['From'] = sender_email 
@@ -37,13 +36,10 @@ description):
             server.sendmail(sender_email, recipient, msg.as_string()) 
             server.quit() 
  
-            self.info_string = "Email Sent: \n\n \u2139 A verification email has 
-been sent to your email address. Please \n check your inbox and enter the six
-digit code." 
+            self.info_string = "Email Sent: \n\n \u2139 A verification email has been sent to your email address. Please \n check your inbox and enter the sixdigit code." 
  
         except Exception as e: 
-            messagebox.showerror("Error", f"Error: An error occurred while 
-sending the verification email: {str(e)}") 
+            messagebox.showerror("Error", f"Error: An error occurred while sending the verification email: {str(e)}") 
  
     def get_info_string(self): 
         return self.info_string 
