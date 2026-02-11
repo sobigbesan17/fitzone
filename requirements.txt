@@ -3,3 +3,4 @@ pillow
 bcrypt
 tkcalendar
 matplotlib
+scipy
