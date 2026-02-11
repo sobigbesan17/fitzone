@@ -27,8 +27,7 @@ successful_login_callback, message_error=None):
         login_frame = tk.Frame(self, background="#333333") 
         login_frame.place(relx=0.5, rely=0.37, anchor=tk.CENTER) 
  
-        sign_up_description = tk.Label(login_frame, text="Log Into Your 
-Account", background="#333333", foreground="#FFFFFF", font=self.manage_font.large_bold_heading_font) 
+        sign_up_description = tk.Label(login_frame, text="Log Into Your Account", background="#333333", foreground="#FFFFFF", font=self.manage_font.large_bold_heading_font) 
         sign_up_description.grid(row=0, column=0, padx=10, pady=5, columnspan=3, 
 sticky="w") 
  
@@ -104,13 +103,10 @@ sticky="ew")
  
         error_string="" 
  
-        if (username and password) and self.username_field==1 and 
-self.password_field==1: 
+        if (username and password) and self.username_field==1 and self.password_field==1: 
             self.member_id = self.validate_credentials(username, password) 
-            if self.member_id: # Checks if username and password are valid 
-records 
-                success_message = "Success: \n\n \u2705 Login successful! You 
-will be redirected shortly." 
+            if self.member_id: # Checks if username and password are valid records 
+                success_message = "Success: \n\n \u2705 Login successful! You will be redirected shortly." 
             else: 
                 error_string = "Error: \n\n \u26A0 Invalid username or password" 
         else: 
@@ -119,8 +115,7 @@ will be redirected shortly."
             elif self.password_field==1 and password: 
                 error_string = "Error: \n\n \u26A0 Please enter username." 
             else: 
-                error_string = "Error: \n\n \u26A0 Please enter both username 
-and password." 
+                error_string = "Error: \n\n \u26A0 Please enter both username and password." 
              
         if error_string: 
             self.message_handler.invalid_message(error_string) 
@@ -168,11 +163,9 @@ func=self.successful_login_callback: func())
                 member_id, stored_password_hash, salt = record 
                  
                 password_handler = PasswordHandler() 
-                provided_password_hash = 
-password_handler.hash_password(password, salt) 
+                provided_password_hash = password_handler.hash_password(password, salt) 
                 if provided_password_hash == stored_password_hash: 
-                    return member_id  # Credentials are valid, return the 
-MemberID 
+                    return member_id  # Credentials are valid, return the MemberID 
                 else: 
                     return None  # Password doesn't match 
             else: 
@@ -186,8 +179,7 @@ MemberID
         return self.member_id 
  
     def get_location_id(self): 
-        self.cursor.execute(f"SELECT LocationID FROM Members WHERE MemberID = 
-?", (self.member_id,)) 
+        self.cursor.execute(f"SELECT LocationID FROM Members WHERE MemberID = ?", (self.member_id,)) 
         location_id = self.cursor.fetchone()[0] 
  
         return location_id
