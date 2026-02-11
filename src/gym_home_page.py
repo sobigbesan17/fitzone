@@ -353,8 +353,7 @@ sticky="s")
 bg=frame_color, cursor="hand2") 
                 image_label.image = image 
                 image_label.pack() 
-                image_label.bind("<Button-1>", lambda event, name=f"{first_name} 
-{last_name}", description=testimonial_text: self.open_testimonial_popup(name, 
+                image_label.bind("<Button-1>", lambda event, name=f"{first_name} {last_name}", description=testimonial_text: self.open_testimonial_popup(name, 
 description)) 
  
                 testimonials_label = tk.Text(testimonial_frame, 
@@ -364,8 +363,7 @@ font=manage_font.small_bold_heading_font, borderwidth=0)
                 testimonials_label.config(state="disabled") 
                 testimonials_label.pack() 
  
-                name_label = tk.Label(testimonial_frame, text=f"{first_name} 
-{last_name}", font=manage_font.large_italic_heading_font, bg=frame_color, 
+                name_label = tk.Label(testimonial_frame, text=f"{first_name} {last_name}", font=manage_font.large_italic_heading_font, bg=frame_color, 
 fg=name_color) 
                 name_label.pack() 
             except Exception as e: 
@@ -472,8 +470,7 @@ Members.FirstName, Members.LastName
              
     def overlay_image_with_text(self, width, height, text, text_colour, 
 font_size, font_path, text_x, text_y): 
-        overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))  # 
-Transparent background 
+        overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))  # Transparent background 
         overlay_draw = ImageDraw.Draw(overlay) 
  
         font = ImageFont.truetype(font_path, font_size) 
