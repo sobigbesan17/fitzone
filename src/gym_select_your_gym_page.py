@@ -65,8 +65,7 @@ func=membership_duration_callback: func())
  
             if gym_details: 
                 self.location_id, address, email, contact_number = gym_details 
-                gym_info_label = tk.Label(self.gym_details_frame, text=f"Gym 
-Address: {address}\nEmail: {email}\nContact Number: {contact_number}", 
+                gym_info_label = tk.Label(self.gym_details_frame, text=f"Gym Address: {address}\nEmail: {email}\nContact Number: {contact_number}", 
 font=self.manage_font.medium_letters_font, width=80, background="#FFE4B5") 
                 gym_info_label.pack() 
         else: 
