@@ -1,8 +1,4 @@
 import tkinter as tk
-from PIL import Image, ImageTk
-from gym_user_dropdown_menu import GymUserDropdownMenu
-from gym_login import GymLogin
-from gym_home_page import GymHomePage
 
 class GymHeader(tk.Frame):
     def __init__(self, parent, logo_path="fitzone.png",
