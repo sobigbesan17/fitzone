@@ -39,8 +39,7 @@ width=940)
         description_label.grid(row=0, column=0, padx=10, pady=5, columnspan=6, 
 sticky="w") 
  
-        message_label = tk.Label(verification_frame, text=f"If your details are 
-in our system, we will send you an email with the code to", 
+        message_label = tk.Label(verification_frame, text=f"If your details are in our system, we will send you an email with the code to", 
 background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font) 
         message_label.grid(row=1, column=0, columnspan=6, padx=10, pady=5, 
@@ -109,20 +108,15 @@ entered_codes)
         if correct_code_format and code == self.verification_code: 
             if self.verification_code_sent_time is not None: 
                 current_time = time.time() 
-                time_difference = current_time - 
-self.verification_code_sent_time 
+                time_difference = current_time - self.verification_code_sent_time 
                 if time_difference > 600:  # 10 minutes as seconds 
-                    self.error_string = "Error: \n\n \u26A0 Verification code 
-has expired. Please request a new code. \n" 
+                    self.error_string = "Error: \n\n \u26A0 Verification code has expired. Please request a new code. \n" 
                 else: 
-                    self.success_string = "Success: \n\n \u2705 Code 
-verification successful! \n" 
+                    self.success_string = "Success: \n\n \u2705 Code verification successful! \n" 
         elif not correct_code_format: 
-            self.error_string =  "Error: \n\n \u26A0 Please enter the six-digit 
-verification code. \n" 
+            self.error_string =  "Error: \n\n \u26A0 Please enter the six-digit verification code. \n" 
         else: 
-            self.error_string =  "Error: \n\n \u26A0 Invalid code. Please try 
-again. \n" 
+            self.error_string =  "Error: \n\n \u26A0 Invalid code. Please try again. \n" 
  
         if self.error_string: 
             self.message_handler.invalid_message(self.error_string) 
@@ -150,13 +144,11 @@ again. \n"
         description = read_text.extract_description('Description:') 
         title = read_text.extract_description('Title:') 
      
-        if self.check_valid_username_and_email(self.email, self.username): # 
-Checks if username and email credentials are valid 
+        if self.check_valid_username_and_email(self.email, self.username): # Checks if username and email credentials are valid 
             self.verification_code = email_verifier.verify_email(self.email, 
 title, description) 
         else: 
-            self.verification_code = 
-email_verifier.verify_email("FitZoneBot@gmail.com", title, description) 
+            self.verification_code = email_verifier.verify_email("FitZoneBot@gmail.com", title, description) 
         self.info_string = email_verifier.get_info_string() 
         self.message_handler.info_message(self.info_string) 
  
