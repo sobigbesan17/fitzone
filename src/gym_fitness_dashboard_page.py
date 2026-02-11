@@ -61,8 +61,8 @@ gym_class_clashes_callback)
         self.canvas.destroy() 
         self.page.destroy() 
         self.load_fitness_data() 
-        self.create_dashboard() 
- 
+        self.create_dashboard()
+
     def load_fitness_data(self): 
         # Retrieve all fields of fitness data for the member on the current date 
         query = ''' 
@@ -80,11 +80,9 @@ TargetWorkouts,
         if self.fitness_data: 
             (self.steps, self.distance, self.calories_burned, self.workouts,             self.target_steps, self.target_distance, 
 self.target_calories_burned, self.target_workouts, 
-            self.breakfast_calories, self.lunch_calories, self.dinner_calories) 
-= self.fitness_data 
-            self.last_seven_days, self.workouts_last_seven_days, 
-self.target_workouts_last_seven_days = self.load_workouts_last_seven_days() 
- 
+            self.breakfast_calories, self.lunch_calories, self.dinner_calories) = self.fitness_data 
+            self.last_seven_days, self.workouts_last_seven_days, self.target_workouts_last_seven_days = self.load_workouts_last_seven_days()
+
     def load_member_name(self): 
         # Query the member's first name and last name based on the member_id 
         query = ''' 
@@ -116,15 +114,13 @@ self.target_workouts_last_seven_days = self.load_workouts_last_seven_days()
         number_of_target_workouts_last_seven_days = [data[2] for data in 
 workouts_data] 
          
-        return dates_last_seven_days, number_of_workouts_last_seven_days, 
-number_of_target_workouts_last_seven_days 
+        return dates_last_seven_days, number_of_workouts_last_seven_days, number_of_target_workouts_last_seven_days 
  
     def create_dashboard(self):         
         self.page = tk.Frame(self) 
         self.page.pack(fill='both', expand=True) 
  
-        self.filter_title_frame = ttk.Label(self.page, text="Fitness 
-Dashboard:", font=self.manage_font.large_bold_heading_font, 
+        self.filter_title_frame = ttk.Label(self.page, text="Fitness Dashboard:", font=self.manage_font.large_bold_heading_font, 
 background="#333333", foreground="#FFFFFF")
         self.filter_title_frame.pack(fill="x") 
              
@@ -176,8 +172,7 @@ foreground="white").grid(row=1, column=i+1, padx=50, pady=0, sticky="ew")
             welcome_frame = tk.Frame(self.dashboard_frame, background="#444444") 
             welcome_frame.pack(fill='x') 
  
-            tk.Label(welcome_frame, text=f"Welcome, {self.first_name} 
-{self.last_name}!", font=self.manage_font.large_bold_letters_font, 
+            tk.Label(welcome_frame, text=f"Welcome, {self.first_name} {self.last_name}!", font=self.manage_font.large_bold_letters_font, 
 background="#444444", foreground="white").pack(side="left", padx=10) 
  
             self.activity_frame = tk.Frame(self.dashboard_frame, 
@@ -424,8 +419,7 @@ self.workout_percentage / 8]
  
         total_goal_achieved = int(2 * sum(self.goal_percentage_data)) 
         incomplete_goals_percentage = (100-total_goal_achieved)/2 
-        self.pie_chart_data = self.goal_percentage_data + 
-[incomplete_goals_percentage, 50] 
+        self.pie_chart_data = self.goal_percentage_data + [incomplete_goals_percentage, 50] 
  
         tk.Label(goals_frame, text=f"Goal ({total_goal_achieved}%)", 
 font=self.manage_font.larger_letters_font, background="#333333", 
@@ -563,8 +557,7 @@ fontsize=10, color='white')
  
         ax.plot(x_new, y_new, label='Spline Curve', 
 color=self.spline_graph_colour) 
-        ax.scatter(x, y, marker='o', color=self.spline_graph_colour, label='Data 
-Points') 
+        ax.scatter(x, y, marker='o', color=self.spline_graph_colour, label='Data Points') 
  
         ax.spines['bottom'].set_color('white') 
         ax.spines['top'].set_color('white') 
