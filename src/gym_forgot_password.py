@@ -62,16 +62,14 @@ foreground="#000000", font=self.manage_font.small_bold_heading_font)
         self.email = self.entry_email.get() 
         self.error_string = self.validate_credentials.validate_email(self.email) 
  
-        if (self.username and not self.error_string) and self.username_field==1 
-and self.email_field==1:  
+        if (self.username and not self.error_string) and self.username_field==1 and self.email_field==1:  
             self.reset_button.bind("<Button-1>", lambda event, 
 func=self.account_verification_callback: func()) 
             self.reset_button.event_generate("<Button-1>") 
         else: 
             if (not (self.email_field==1 and self.email) 
             and not (self.username_field==1 and self.username)): 
-                self.error_string = "Error: \n\n \u26A0 Please enter username 
-and email." 
+                self.error_string = "Error: \n\n \u26A0 Please enter username and email." 
                 self.message_handler.invalid_message(self.error_string) 
             elif self.email_field==0 or not self.email: 
                 self.error_string = "Error: \n\n \u26A0 Please enter email." 
