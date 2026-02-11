@@ -5,3 +5,4 @@ tkcalendar
 matplotlib
 scipy
 pandas
+sklearn
