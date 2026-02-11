@@ -1,5 +1,4 @@
 pyglet
 pillow
-PIL
 bcrypt
 tkcalendar
