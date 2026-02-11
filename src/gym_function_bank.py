@@ -150,17 +150,12 @@ confirm_password=None):
                     return "Error: \n\n \u26A0 Domain part of the email is too long." 
                 elif not domain_part.count('.') >= 1: 
                     return "Error: \n\n \u26A0 Email domain should contain at least one '.' symbol." 
-                elif not all(char.isalnum() or char in "!#$%&'*+-/=?^_`{|}~" for 
-char in local_part): 
-                    return "Error: \n\n \u26A0 Invalid characters in the local 
-part of the email." 
-                elif not all(char.isalnum() or char in ".-" for char in 
-domain_part): 
-                    return "Error: \n\n \u26A0 Invalid characters in the domain 
-part of the email." 
+                elif not all(char.isalnum() or char in "!#$%&'*+-/=?^_`{|}~" for char in local_part): 
+                    return "Error: \n\n \u26A0 Invalid characters in the local part of the email." 
+                elif not all(char.isalnum() or char in ".-" for char in domain_part): 
+                    return "Error: \n\n \u26A0 Invalid characters in the domainpart of the email." 
                 elif domain_part[0] == '.' or domain_part[-1] == '.': 
-                    return "Error: \n\n \u26A0 Domain cannot start or end with a 
-'.'." 
+                    return "Error: \n\n \u26A0 Domain cannot start or end with a '.'." 
                 elif '..' in domain_part: 
                     return "Error: \n\n \u26A0 Domain cannot contain consecutive '.' characters." 
                 elif '.' not in domain_part: 
@@ -172,8 +167,7 @@ part of the email."
              
     def validate_date_of_birth(self, date_of_birth_str): 
         try: 
-            date_of_birth = datetime.datetime.strptime(date_of_birth_str, "%Y
-%m-%d").date() 
+            date_of_birth = datetime.datetime.strptime(date_of_birth_str, "%Y-%m-%d").date() 
  
             # Calculates the age using date of birth 
             current_date = datetime.datetime.today().date() 
@@ -186,8 +180,7 @@ current_date.day) < (date_of_birth.month, date_of_birth.day))
        
             # Checks if the age is within the valid range (16 to 100) 
             if age < 16: 
-                return "You must be 16 or older to create a gym website 
-account." 
+                return "You must be 16 or older to create a gym website account." 
             elif age > 100: 
                 return "Invalid date of birth. Please provide a valid date." 
              
@@ -214,8 +207,7 @@ class PasswordHandler:
         return password_hash, salt
  
     def hash_password(self, provided_password, stored_salt): 
-        password = provided_password.encode('utf-8')  # Encode the provided 
-password to bytes 
+        password = provided_password.encode('utf-8')  # Encode the provided password to bytes 
         password_hash = bcrypt.hashpw(password, stored_salt) 
         return password_hash 
  
@@ -253,14 +245,13 @@ foreground="#FFFFFF", command=self.set_selected_date)
     def set_selected_date(self): 
         selected_date = self.calendar.get_date() 
         selected_date = datetime.datetime.strptime(selected_date, '%m/%d/%y')   
-        formatted_date = selected_date.strftime('%Y-%m-%d')  # Converts it to 
-%Y-%m-%d format 
+        formatted_date = selected_date.strftime('%Y-%m-%d')  # Converts it to %Y-%m-%d format 
         self.master.update_start_date(formatted_date) 
         self.destroy() 
  
 class HorizontalProgressBar: 
     def __init__(self, master, progress_value):
-              self.master = master 
+        self.master = master 
         self.manage_font = ManageFont() 
         self.frame = tk.Frame(self.master, background="#D3D3D3") 
         self.frame.pack(pady=20, fill="x") 
