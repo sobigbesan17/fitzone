@@ -95,8 +95,7 @@ font=self.manage_font.large_bold_heading_font).pack(anchor=tk.SW)
  
         location_id = 1 
  
-        membership_packages, membership_features = 
-self.fetch_membership_packages(location_id) 
+        membership_packages, membership_features = self.fetch_membership_packages(location_id) 
         self.membership_packages = membership_packages 
         self.membership_features = membership_features 
  
@@ -110,8 +109,7 @@ variable=membership_var, value=package_name).pack(side=tk.LEFT, padx=5)
             self.membership_description_frame = ttk.Frame(self.content_frame) 
             self.membership_description_frame.pack(pady=10, fill=tk.X) 
  
-        ttk.Label(self.membership_description_frame, text="Membership 
-Description:", font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W) 
+        ttk.Label(self.membership_description_frame, text="Membership Description:", font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W) 
         description = self.membership_packages[0][3] 
         ttk.Label(self.membership_description_frame, text=description, 
 font=self.manage_font.medium_letters_font).pack(anchor=tk.W)
@@ -165,8 +163,7 @@ feature_data.items()]
             else:
                 bg_color = "#FFFFFF"  # Even rows 
  
-            # Insert the row into the membership_table with the specified 
-background color 
+            # Insert the row into the membership_table with the specified background color 
             item = membership_table.insert('', 'end', values=feature_row, 
 tags=(bg_color,)) 
             membership_table.tag_configure(bg_color, background=bg_color) 
@@ -178,12 +175,11 @@ tags=(bg_color,))
 style='TFrame') 
         self.additional_details_frame.pack(fill='both', expand=True, pady=20) 
          
-        ttk.Style().configure('AdditionalDetails.TFrame', background="#333333") 
-        
-self.additional_details_frame.configure(style='AdditionalDetails.TFrame') 
+        ttk.Style().configure('AdditionalDetails.TFrame', background="#333333")
+
+        self.additional_details_frame.configure(style='AdditionalDetails.TFrame') 
  
-        ttk.Label(self.additional_details_frame, text=f"Membership package: 
-{self.package_name} ({self.duration_name})", 
+        ttk.Label(self.additional_details_frame, text=f"Membership package: {self.package_name} ({self.duration_name})", 
 font=self.manage_font.large_bold_letters_font, background="#333333", 
 foreground="#FFFFFF").pack(anchor=tk.W, padx=10) 
  
@@ -265,8 +261,7 @@ func=self.user_detail_callback: func())
     def calculate_end_date(self): 
         if self.start_date: 
             selected_start_date = datetime.datetime.strptime(self.start_date, "%Y-%m-%d") 
-            one_month_later = selected_start_date + 
-timedelta(days=self.package_number_of_days) 
+            one_month_later = selected_start_date + timedelta(days=self.package_number_of_days) 
             self.end_date_label.config(text=one_month_later.strftime("%Y-%m-%d")) 
  
     def update_membership_description(self, selected_package, membership_packages, membership_features): 
@@ -282,12 +277,10 @@ timedelta(days=self.package_number_of_days)
                 self.duration_name = duration_name 
                 self.package_number_of_days = numberofdays 
  
-                ttk.Label(self.membership_description_frame, text="Membership 
-Description:", font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W) 
+                ttk.Label(self.membership_description_frame, text="Membership Description:", font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W) 
                 ttk.Label(self.membership_description_frame, text=description, 
 font=self.manage_font.medium_letters_font).pack(anchor=tk.W) 
-                ttk.Label(self.membership_description_frame, text=f"From 
-${price} a month", 
+                ttk.Label(self.membership_description_frame, text=f"From ${price} a month", 
 font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W) 
                 break 
  
@@ -311,18 +304,14 @@ font=self.manage_font.large_bold_letters_font).pack(anchor=tk.W)
         # The difference between the selected date and the current date 
         date_difference = selected_date - current_date 
          
-        # Check if the selected date is not in the past and not more than 30 
-days ahead for delay 
+        # Check if the selected date is not in the past and not more than 30 days ahead for delay 
         if date_difference.days < -1: 
-            error_string = "Error: \n\n \u26A0 Selected date cannot be the 
-past." 
+            error_string = "Error: \n\n \u26A0 Selected date cannot be the past." 
         elif date_difference.days > 30: 
              
-            error_string = "Error: \n\n \u26A0 You cannot delay your membership 
-for longer than 30 days." 
+            error_string = "Error: \n\n \u26A0 You cannot delay your membership for longer than 30 days." 
         else: 
-            success_string = "Success: \n\n \u2705 Start date changed 
-successfully!" 
+            success_string = "Success: \n\n \u2705 Start date changed successfully!" 
  
         if error_string: 
             self.message_handler.invalid_message(error_string) 
