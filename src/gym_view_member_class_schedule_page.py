@@ -65,10 +65,9 @@ gym_class_booking_callback, gym_class_clashes_callback)
     WHERE Enrollment.MemberID = ?
     AND ClassSchedule.Date BETWEEN ? AND ? '''
 
-        self.cursor.execute(filter_query, (self.member_id, self.start_date, end_date))
-        self.member_schedule = self.cursor.fetchall()
+            self.cursor.execute(filter_query, (self.member_id, self.start_date, end_date))
+            self.member_schedule = self.cursor.fetchall()
 
-            
         except sqlite3.Error as e: 
             print("Error occurred:", e) 
             return [] 
@@ -132,8 +131,7 @@ canvas.configure(scrollregion=canvas.bbox("all")))
     def create_schedule_view(self): 
         self.fetch_member_schedule() 
  
-        button_spacing = tk.Label(self.scrollable_frame, text=f"From 
-{self.start_date}", font=self.manage_font.medium_bold_letters_font, width=160) 
+        button_spacing = tk.Label(self.scrollable_frame, text=f"From {self.start_date}", font=self.manage_font.medium_bold_letters_font, width=160) 
         button_spacing.pack(anchor="center", fill="both", padx=10, pady=10) 
  
         if not self.member_schedule: 
@@ -163,8 +161,7 @@ orient="horizontal").pack(fill="x", padx=10, pady=5)
         grid_frame.pack(anchor=tk.W, padx=10, pady=10) 
          
         for gym_class in self.member_schedule:
-            class_id, class_name, instructor, class_schedule_id, 
-available_slots, start_time, duration, date, studio, message = gym_class 
+            class_id, class_name, instructor, class_schedule_id, available_slots, start_time, duration, date, studio, message = gym_class 
  
             if date not in grid_dict: 
                 grid_dict[date] = [] 
@@ -183,8 +180,7 @@ font=self.manage_font.medium_bold_heading_font).pack(anchor=tk.W, padx=5,
 pady=10) 
  
             for gym_class in classes: 
-                class_id, class_name, instructor, class_schedule_id, 
-available_slots, start_time, duration, date, studio, message = gym_class 
+                class_id, class_name, instructor, class_schedule_id, available_slots, start_time, duration, date, studio, message = gym_class 
  
                 class_frame = tk.Frame(date_frame, background="#FFFFFF") 
                 class_frame.pack(anchor=tk.W, padx=5, pady=10) 
@@ -221,8 +217,7 @@ class_schedule_id=class_schedule_id: self.leave_class(class_schedule_id))
         list_frame.pack(anchor=tk.W, padx=10, pady=10) 
          
         for gym_class in self.member_schedule: 
-            class_id, class_name, instructor, class_schedule_id, 
-available_slots, start_time, duration, date, studio, message = gym_class 
+            class_id, class_name, instructor, class_schedule_id, available_slots, start_time, duration, date, studio, message = gym_class 
  
             if date not in self.classes_dict: 
                 self.classes_dict[date] = [] 
@@ -264,8 +259,7 @@ height=self.count_classes_per_day(date)+1)
 duration) 
                 start_time = self.time_handler.convert_to_am_pm(start_time) 
                  
-                list_view.insert("", "end", values=[class_name, f"{start_time} - 
-{end_time}", instructor, available_slots, studio, message]) 
+                list_view.insert("", "end", values=[class_name, f"{start_time} - {end_time}", instructor, available_slots, studio, message]) 
  
     def count_classes_per_day(self, date): 
         self.cursor.execute(''' 
