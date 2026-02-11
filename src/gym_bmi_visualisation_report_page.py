@@ -76,38 +76,31 @@ background="#333333")
  
         bmi_category = self.calculate_bmi_category(average_bmi) 
          
-        average_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Average 
-BMI: {average_bmi:.2f} ({bmi_category})", width=150, background="#333333", 
+        average_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Average BMI: {average_bmi:.2f} ({bmi_category})", width=150, background="#333333", 
 foreground="#FFFFFF", font=self.manage_font.medium_bold_heading_font) 
         average_bmi_label.pack() 
          
-        min_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Lowest BMI: 
-{min_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
+        min_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Lowest BMI: {min_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font) 
         min_bmi_label.pack() 
  
-        median_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Median 
-BMI: {median_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
+        median_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Median BMI: {median_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font) 
         median_bmi_label.pack() 
          
-        max_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Highest BMI: 
-{max_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
+        max_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"Highest BMI: {max_bmi:.2f}", background="#333333", foreground="#FFFFFF", 
 font=self.manage_font.medium_letters_font) 
         max_bmi_label.pack() 
 
-        quartile_1_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"25th 
-Percentile (Q1): {bmi_quartile_1:.2f}", background="#333333", 
+        quartile_1_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"25th Percentile (Q1): {bmi_quartile_1:.2f}", background="#333333", 
 foreground="#FFFFFF", font=self.manage_font.medium_letters_font) 
         quartile_1_bmi_label.pack() 
          
-        quartile_3_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"75th 
-Percentile (Q3): {bmi_quartile_3:.2f}", background="#333333", 
+        quartile_3_bmi_label = tk.Label(self.bmi_statistics_frame, text=f"75th Percentile (Q3): {bmi_quartile_3:.2f}", background="#333333", 
 foreground="#FFFFFF", font=self.manage_font.medium_letters_font) 
         quartile_3_bmi_label.pack() 
  
-        self.personalised_bmi_recommendation_button = 
-tk.Button(self.bmi_visualisation_frame, text="Personalised BMI Recommendation", 
+        self.personalised_bmi_recommendation_button = tk.Button(self.bmi_visualisation_frame, text="Personalised BMI Recommendation", 
 background="#FFE4B5", font=self.manage_font.medium_letters_font) 
         self.personalised_bmi_recommendation_button.pack(pady=10) 
  
@@ -129,9 +122,8 @@ text="Additional Data Points:", background="#FFFFFF",
 font=self.manage_font.medium_letters_font) 
         self.num_data_points_label.pack() 
         self.num_data_points_menu = tk.OptionMenu(self.bmi_visualisation_frame, 
-self.num_data_points, 1, 2, 3, 5, 7) 
-        
-self.num_data_points_menu.config(font=self.manage_font.medium_letters_font) 
+self.num_data_points, 1, 2, 3, 5, 7)
+        self.num_data_points_menu.config(font=self.manage_font.medium_letters_font) 
         self.num_data_points_menu.pack() 
  
         self.predict_bmi_button = tk.Button(self.bmi_visualisation_frame, 
@@ -166,16 +158,13 @@ font=self.manage_font.medium_letters_font)
 font=self.manage_font.medium_bold_heading_font) 
  
         num_data_points = len(self.sample_bmi_data) 
-        num_tables = (num_data_points + 9) // 10  # Calculate the number of 
-tables needed 
+        num_tables = (num_data_points + 9) // 10  # Calculate the number of tables needed 
  
         for table_num in range(num_tables): 
             start_index = table_num * 10 
-            end_index = min((table_num + 1) * 10, num_data_points)  # Ensure we 
-don't go beyond the data length 
+            end_index = min((table_num + 1) * 10, num_data_points)  # Ensure we don't go beyond the data length 
  
-            table_frame = tk.Frame(self.bmi_visualisation_frame, 
-background="#FFFFFF") 
+            table_frame = tk.Frame(self.bmi_visualisation_frame, background="#FFFFFF") 
             table_frame.pack() 
  
             table_data = self.sample_bmi_data[start_index:end_index] 
@@ -218,8 +207,7 @@ filetypes=[("Text files", "*.txt")])
                 file.write("\t".join(map(str, self.sample_bmi_data))) 
  
     def display_bmi_visualization(self, data): 
-        self.bmi_visualisation_graph_frame = 
-tk.Frame(self.bmi_visualisation_frame, background="#FFFFFF") 
+        self.bmi_visualisation_graph_frame = tk.Frame(self.bmi_visualisation_frame, background="#FFFFFF") 
         self.bmi_visualisation_graph_frame.pack(fill='x') 
          
         if data: 
