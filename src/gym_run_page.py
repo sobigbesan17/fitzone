@@ -109,16 +109,14 @@ self.run_forgot_password_page, self.run_successful_login, self.message_error)
  
     def run_successful_login(self): 
         self.member_id = self.login_window.get_member_id() # Retrieve MemberID 
-        self.location_id = self.login_window.get_location_id() # Retrieve 
-LocationID 
+        self.location_id = self.login_window.get_location_id() # Retrieve LocationID 
         time.sleep(3) 
         self.destroy_all_pages() 
         self.run_home_page() 
  
     def run_forgot_password_page(self): 
         self.destroy_all_pages() 
-        self.forgot_password_window = 
-GymForgotPassword(self.run_account_verification_page) 
+        self.forgot_password_window = GymForgotPassword(self.run_account_verification_page) 
         self.create_header(self.forgot_password_window) 
         self.forgot_password_window.update() 
         self.maximize_window(self.forgot_password_window) 
@@ -135,8 +133,7 @@ username, self.run_set_new_password_page)
         self.maximize_window(self.account_verification_window) 
  
     def run_set_new_password_page(self): 
-        member_id = self.account_verification_window.get_member_id() # Retrieve 
-Member ID 
+        member_id = self.account_verification_window.get_member_id() # Retrieve Member ID 
         self.destroy_all_pages() 
          
         self.set_new_password_window = GymSetNewPassword(member_id, 
@@ -147,40 +144,30 @@ self.run_login_page)
  
     def run_select_your_gym_page(self): 
         self.destroy_all_pages() 
-        self.select_your_gym_window = 
-GymSelectionPage(self.run_membership_duration_page) 
+        self.select_your_gym_window = GymSelectionPage(self.run_membership_duration_page) 
         self.create_header(self.select_your_gym_window) 
         self.create_progress_bar(self.select_your_gym_window, 0) 
         self.select_your_gym_window.update() 
         self.maximize_window(self.select_your_gym_window) 
  
     def run_membership_duration_page(self): 
-        self.location_id = self.select_your_gym_window.get_location_id() # 
-Retrieve Location ID 
+        self.location_id = self.select_your_gym_window.get_location_id() # Retrieve Location ID 
         self.destroy_all_pages() 
-        self.membership_duration_window = 
-GymMembershipDurationPage(self.location_id, self.run_membership_package_page) 
+        self.membership_duration_window = GymMembershipDurationPage(self.location_id, self.run_membership_package_page) 
         self.create_header(self.membership_duration_window) 
         self.create_progress_bar(self.membership_duration_window, 20) 
         self.membership_duration_window.update() 
         self.maximize_window(self.membership_duration_window) 
  
     def run_membership_package_page(self): 
-        self.membership_duration_id = 
-self.membership_duration_window.get_membership_duration_id() # Retrieve Number 
-of Days ID 
-        self.number_of_days_id = 
-self.membership_duration_window.get_membership_number_of_days_id() # Retrieve 
-Duration ID 
-        self.membership_price = 
-self.membership_duration_window.get_membership_price() 
+        self.membership_duration_id = self.membership_duration_window.get_membership_duration_id() # Retrieve Number of Days ID 
+        self.number_of_days_id = self.membership_duration_window.get_membership_number_of_days_id() # Retrieve Duration ID 
+        self.membership_price = self.membership_duration_window.get_membership_price() 
  
         self.destroy_all_pages() 
  
         if self.membership_duration_id != 0: 
-            self.membership_package_window = 
-GymMembershipPackagePage(self.location_id, self.membership_duration_id, 
-self.run_user_detail_registration_page) 
+            self.membership_package_window = GymMembershipPackagePage(self.location_id, self.membership_duration_id, self.run_user_detail_registration_page) 
             self.create_progress_bar(self.select_your_gym_window, 40) 
             self.create_header(self.membership_package_window) 
             self.membership_package_window.update() 
@@ -191,23 +178,19 @@ self.run_user_detail_registration_page)
     def run_user_detail_registration_page(self): 
         self.member_package_id = 0 
         if self.membership_duration_id != 0: 
-            self.member_package_id = 
-self.membership_package_window.get_membership_package_id() 
-            self.membership_price = 
-self.membership_package_window.get_membership_price() 
+            self.member_package_id = self.membership_package_window.get_membership_package_id() 
+            self.membership_price = self.membership_package_window.get_membership_price() 
              
         self.destroy_all_pages() 
   
-        self.user_detail_registration_window = 
-GymDetailsRegistrationPage(self.run_payment_registration_page) 
+        self.user_detail_registration_window = GymDetailsRegistrationPage(self.run_payment_registration_page) 
         self.create_header(self.user_detail_registration_window) 
         self.create_progress_bar(self.user_detail_registration_window, 60) 
         self.user_detail_registration_window.update() 
         self.maximize_window(self.user_detail_registration_window) 
  
     def run_payment_registration_page(self): 
-        self.users_detail = 
-self.user_detail_registration_window.get_user_account_details() 
+        self.users_detail = self.user_detail_registration_window.get_user_account_details() 
          
         self.destroy_all_pages() 
  
@@ -222,8 +205,7 @@ self.run_registration_success_page)
         self.destroy_all_pages() 
         self.member_detail = [self.location_id, self.membership_duration_id, 
 self.member_package_id] + self.users_detail
-        self.registration_success_window = 
-GymRegistrationSuccessPage(self.member_detail, self.run_home_page) 
+        self.registration_success_window = GymRegistrationSuccessPage(self.member_detail, self.run_home_page) 
         self.create_header(self.registration_success_window) 
         self.create_progress_bar(self.registration_success_window, 100) 
         self.registration_success_window.update() 
@@ -245,8 +227,7 @@ GymRegistrationSuccessPage(self.member_detail, self.run_home_page)
  
     def run_fitness_dashboard_page(self): 
         self.destroy_all_pages() 
-        self.fitness_dashboard_page_window = 
-FitnessDashboardPage(self.member_id, self.run_fitness_dashboard_page, 
+        self.fitness_dashboard_page_window = FitnessDashboardPage(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                               
@@ -259,8 +240,7 @@ self.run_view_member_class_clashes_page)
  
     def run_personalised_meal_planner_page(self): 
         self.destroy_all_pages() 
-        self.personalised_meal_planner_window = 
-GymPersonalisedMealPlanner(self.member_id, self.run_fitness_dashboard_page, 
+        self.personalised_meal_planner_window = GymPersonalisedMealPlanner(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                               
@@ -272,8 +252,7 @@ self.run_view_member_class_clashes_page)
         self.maximize_window(self.personalised_meal_planner_window) 
     def run_personalised_workout_planner_page(self): 
         self.destroy_all_pages() 
-        self.personalised_workout_planner_window = 
-GymPersonalisedWorkoutPlanner(self.member_id, self.run_fitness_dashboard_page, 
+        self.personalised_workout_planner_window = GymPersonalisedWorkoutPlanner(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                               
@@ -286,8 +265,7 @@ self.run_view_member_class_clashes_page)
  
     def run_gym_features_page(self): 
         if self.home_page_window: 
-            self.location_id = self.home_page_window.get_location_id() # 
-Retrieve Location ID 
+            self.location_id = self.home_page_window.get_location_id() # Retrieve Location ID 
         try: 
             self.destroy_all_pages() 
             self.gym_features_window = GymFeaturesPage(self.location_id, 
@@ -344,8 +322,7 @@ self.run_view_member_class_clashes_page)
  
     def run_bmi_visualisation_report_page(self): 
         self.destroy_all_pages() 
-        self.run_bmi_visualisation_window = 
-BMIVisualisationReportPage(self.member_id, self.run_fitness_dashboard_page, 
+        self.run_bmi_visualisation_window = BMIVisualisationReportPage(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                               
@@ -358,8 +335,7 @@ self.run_view_member_class_clashes_page)
  
     def run_view_member_class_schedule_page(self): 
         self.destroy_all_pages() 
-        self.view_member_class_schedule_window = 
-MemberClassSchedulePage(self.member_id, self.run_fitness_dashboard_page, 
+        self.view_member_class_schedule_window = MemberClassSchedulePage(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                               
@@ -372,8 +348,7 @@ self.run_view_member_class_clashes_page, self.run_modify_classes_page)
  
     def run_view_member_class_clashes_page(self): 
         self.destroy_all_pages() 
-        self.view_member_class_clashes_window = 
-MemberClassClashesPage(self.member_id, self.run_fitness_dashboard_page, 
+        self.view_member_class_clashes_window = MemberClassClashesPage(self.member_id, self.run_fitness_dashboard_page, 
 self.run_calculate_bmi_page, self.run_bmi_visualisation_report_page, 
 self.run_personalised_meal_planner_page, 
                                                                             
@@ -388,11 +363,9 @@ self.run_view_member_class_clashes_page)
  
     def run_class_reservation_page(self): 
         if self.member_id: # If user is already logged in 
-            self.class_id = self.gym_classes_booking_window.get_class_id() # 
-Retrieve Class ID 
+            self.class_id = self.gym_classes_booking_window.get_class_id() # Retrieve Class ID 
             self.destroy_all_pages() 
-            self.view_member_class_schedule_window = 
-GymClassReservationPage(self.class_id, self.member_id, 
+            self.view_member_class_schedule_window = GymClassReservationPage(self.class_id, self.member_id, 
 self.run_gym_features_page, self.run_gym_view_team_page, 
 self.run_gym_classes_booking_page, 
                                                                   
@@ -401,15 +374,12 @@ self.run_gym_reviews_page)
             self.view_member_class_schedule_window.update() 
             self.maximize_window(self.view_member_class_schedule_window) 
         else: 
-            self.message_error = "Error: \n\n \u26A0 Please log in to book 
-classes." 
+            self.message_error = "Error: \n\n \u26A0 Please log in to book classes." 
             self.run_login_page() 
  
     def run_modify_classes_page(self): 
         if self.view_member_class_schedule_window: 
-            self.class_schedule_id = 
-self.view_member_class_schedule_window.get_class_schedule_id() # Retrieve Class 
-ID 
+            self.class_schedule_id = self.view_member_class_schedule_window.get_class_schedule_id() # Retrieve Class ID 
         self.destroy_all_pages() 
         self.leave_class_window = LeaveClassPage(self.class_schedule_id, 
 self.member_id, self.run_fitness_dashboard_page, self.run_calculate_bmi_page, 
@@ -514,15 +484,6 @@ self.run_view_member_class_clashes_page)
             self.gym_reviews_window.destroy() 
             self.gym_reviews_window = None
 
- 
-196 
- 
- 
-  
- 
- 
- 
- 
         if self.calculate_bmi_window is not None: 
             self.calculate_bmi_window.destroy() 
             self.calculate_bmi_window = None 
