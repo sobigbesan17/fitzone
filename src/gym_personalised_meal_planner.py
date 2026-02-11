@@ -29,7 +29,7 @@ gym_class_booking_callback, gym_class_clashes_callback):
         self.custom_meal_frame = None 
         self.personalised_meal_frame = None 
         self.personalised_meal_title = None
-          self.meal_recommendation_frame = None 
+        self.meal_recommendation_frame = None 
         self.member_id = member_id 
  
         self.manage_font = ManageFont() 
@@ -147,8 +147,7 @@ font=self.manage_font.medium_bold_letters_font, command=self.show_list_view)
 font=self.manage_font.medium_bold_letters_font) 
         self.date_picker_frame.pack(padx=10, pady=10, fill="both", expand=True) 
          
-        self.date_picker_label = tk.Label(self.date_picker_frame, text="Select 
-Date:", font=self.manage_font.medium_bold_heading_font) 
+        self.date_picker_label = tk.Label(self.date_picker_frame, text="Select Date:", font=self.manage_font.medium_bold_heading_font) 
         self.date_picker_label.pack(pady=5) 
  
         self.date_picker_calendar = Calendar(self.date_picker_frame, 
@@ -216,16 +215,14 @@ f"{time} Drinks", "Drinks")
                     text_widget = tk.Text(self.grid_view, wrap="word", height=8, 
 width=18, state="normal", font=self.manage_font.medium_bold_letters_font) 
 
-                    text_widget.insert("1.0", f"Meals: \n {meal_text} \n\n 
-Snacks: \n {snacks_text} \n Drinks:\n{drinks_text}") 
+                    text_widget.insert("1.0", f"Meals: \n {meal_text} \n\n Snacks: \n {snacks_text} \n Drinks:\n{drinks_text}") 
                     text_widget.config(state="disabled") 
                     text_widget.grid(row=row, column=column, sticky="nsew") 
  
         elif self.current_view == "list": 
             distinct_days = self.get_meal_schedule_days() 
  
-            self.title_label = tk.Label(self.meal_schedule_canvas, text=f"From 
-{self.selected_date}", font=self.manage_font.large_bold_heading_font, 
+            self.title_label = tk.Label(self.meal_schedule_canvas, text=f"From {self.selected_date}", font=self.manage_font.large_bold_heading_font, 
 background="white") 
             self.title_label.pack(pady=10) 
  
@@ -322,31 +319,26 @@ font=self.manage_font.medium_bold_heading_font)
                         if len(parts) == 2: 
                             time, meal_name = parts 
                             current_meal_time = time   
-                            
-meal_schedule_data[current_date].setdefault(current_meal_time, 
+                            meal_schedule_data[current_date].setdefault(current_meal_time, 
 []).append(meal_name.strip()) 
                         elif current_meal_time: 
                             if "Snacks" in meal: 
                                 snack = meal.split(":")[1] 
-                                
-meal_schedule_data[current_date].setdefault(current_meal_time + " Snacks", 
+                                meal_schedule_data[current_date].setdefault(current_meal_time + " Snacks", 
 []).append(snack) 
                             elif "Drinks" in meal: 
                                 drink = meal.split(":")[1] 
-                                
-meal_schedule_data[current_date].setdefault(current_meal_time + " Drinks", 
+                                meal_schedule_data[current_date].setdefault(current_meal_time + " Drinks", 
 []).append(drink) 
         return meal_schedule_data 
  
     def goto_date(self): 
         selected_date = self.date_picker_calendar.get_date() 
         try: 
-            self.selected_date = datetime.datetime.strptime(selected_date, "%Y
-%m-%d").date() 
+            self.selected_date = datetime.datetime.strptime(selected_date, "%Y-%m-%d").date() 
             self.update_meal_schedule() 
         except ValueError: 
-            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select 
-a valid date in the format YYYY-MM-DD." 
+            self.error_string = f"Error: \n\n \u26A0 Invalid date. Please select a valid date in the format YYYY-MM-DD." 
  
     def goto_selected_date(self): 
         selected_date_str = self.date_picker_calendar.get_date() 
@@ -375,18 +367,15 @@ a valid date in the format YYYY-MM-DD."
             self.error_string = "" 
  
             if not date and not item: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter a date and 
-(meal, snack or drink)" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter a date and (meal, snack or drink)" 
             elif not item: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter a meal, 
-snack or drink" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter a meal, snack or drink" 
             elif not date: 
                 self.error_string = f"Error: \n\n \u26A0 Please enter a date" 
  
             if not self.error_string:             
                 # Delete existing entries for the specified date and meal_type 
-                self.cursor.execute("DELETE FROM MealSchedule WHERE Date = ? AND 
-Time LIKE ?", 
+                self.cursor.execute("DELETE FROM MealSchedule WHERE Date = ? AND Time LIKE ?", 
                            (date, '%' + meal_type + '%')) 
                
                 if meal_name: 
@@ -436,12 +425,10 @@ drink, drink, drink))
             self.conn.commit() 
             self.update_meal_schedule() 
  
-            self.info_string = "Message: \n\n \u2139 Your item will be added if 
-your input is valid." 
+            self.info_string = "Message: \n\n \u2139 Your item will be added if your input is valid." 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
      
         except Exception as e: 
             messagebox.showerror("Error", f"An error occurred: {e}") 
@@ -485,8 +472,7 @@ the database: {e}")
     def remove_item(self, date, meal_type): 
         try: 
             if not meal_type and not date: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter date and 
-meal type" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter date and meal type" 
             elif not meal_type: 
                 self.error_string = f"Error: \n\n \u26A0 Please enter meal type" 
             elif not date: 
@@ -524,8 +510,7 @@ meal type"
             elif not date: 
                 self.error_string = f"Error: \n\n \u26A0 Please enter date" 
             elif not (meal_details or snack_details or drink_details): 
-                self.error_string = f"Error: \n\n \u26A0 An error occurred: No 
-{meal_type} found for the {date}" 
+                self.error_string = f"Error: \n\n \u26A0 An error occurred: No {meal_type} found for the {date}" 
  
             if not self.error_string: 
                 ttk.Separator(self.select_meal_frame, 
@@ -554,8 +539,7 @@ background="#333333", foreground="#FFFFFF")
                     drink_label.pack(padx=10, pady=10) 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
      
         except Exception as e: 
             messagebox.showerror("Error", f"An error occurred: {e}") 
@@ -761,8 +745,7 @@ foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=50) 
         item_name_combo.grid(row=3, column=1, padx=10, pady=5, sticky="ew") 
  
-        item_summary_label = ttk.Label(self.custom_meal_frame, text="Item 
-Summary:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        item_summary_label = ttk.Label(self.custom_meal_frame, text="Item Summary:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         item_summary_label.grid(row=5, column=0, padx=10, pady=5, sticky="w") 
         item_summary_text = tk.Text(self.custom_meal_frame, 
@@ -770,8 +753,7 @@ font=self.manage_font.medium_bold_letters_font, width=50, height=9)
         item_summary_text.grid(row=4, rowspan=9, column=1, padx=10, pady=5, 
 sticky="ew") 
  
-        calories_label = ttk.Label(self.custom_meal_frame, text="Calories 
-(kcals):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        calories_label = ttk.Label(self.custom_meal_frame, text="Calories (kcals):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
 
         calories_label.grid(row=13, column=0, padx=10, pady=5, sticky="w") 
@@ -783,8 +765,7 @@ font=self.manage_font.medium_bold_letters_font, width=50)
         calories_entry.config(validate="key", 
 validatecommand=(validate_calories, "%P", 4)) 
  
-        protein_label = ttk.Label(self.custom_meal_frame, text="Protein 
-(grams):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        protein_label = ttk.Label(self.custom_meal_frame, text="Protein (grams):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         protein_label.grid(row=14, column=0, padx=10, pady=5, sticky="w") 
         protein_entry = ttk.Entry(self.custom_meal_frame, 
@@ -861,8 +842,7 @@ foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=30) 
         allergies_entry.grid(row=4, column=3, padx=10, pady=5, sticky="ew") 
  
-        meal_size_label = ttk.Label(self.custom_meal_frame, text="Meal Size 
-(g):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        meal_size_label = ttk.Label(self.custom_meal_frame, text="Meal Size (g):", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         meal_size_label.grid(row=5, column=2, padx=10, pady=5, sticky="w") 
         meal_size_entry = ttk.Entry(self.custom_meal_frame, 
@@ -881,8 +861,7 @@ background="#333333", foreground="#FFFFFF")
 font=self.manage_font.medium_bold_letters_font, width=30) 
         ingredients_entry.grid(row=6, column=3, padx=10, pady=5, sticky="ew") 
  
-        cooking_time_label = ttk.Label(self.custom_meal_frame, text="Cooking 
-Time (minutes):", font=self.manage_font.medium_bold_letters_font, 
+        cooking_time_label = ttk.Label(self.custom_meal_frame, text="Cooking Time (minutes):", font=self.manage_font.medium_bold_letters_font, 
 background="#333333", foreground="#FFFFFF") 
         cooking_time_label.grid(row=7, column=2, padx=10, pady=5, sticky="w") 
         cooking_time_entry = ttk.Entry(self.custom_meal_frame, 
@@ -893,8 +872,7 @@ font=self.manage_font.medium_bold_letters_font, width=30)
         cooking_time_entry.config(validate="key", 
 validatecommand=(validate_cooking_time, "%P", 3)) 
  
-        image_path_label = tk.Label(self.custom_meal_frame, text="Upload Item 
-Image:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        image_path_label = tk.Label(self.custom_meal_frame, text="Upload Item Image:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         image_path_label.grid(row=8, column=2, padx=10, pady=10, sticky="w") 
  
@@ -905,8 +883,7 @@ sticky="ew")
  
         self.image_label.bind("<Button-1>", self.upload_image) 
  
-        file_path_label = tk.Label(self.custom_meal_frame, text="Upload Item 
-File:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
+        file_path_label = tk.Label(self.custom_meal_frame, text="Upload Item File:", font=self.manage_font.medium_bold_letters_font, background="#333333", 
 foreground="#FFFFFF") 
         file_path_label.grid(row=16, column=2, padx=10, pady=10, sticky="w") 
  
@@ -1031,8 +1008,7 @@ text="Nutritional Goals:", font=self.manage_font.medium_bold_letters_font,
 background="#333333", foreground="#FFFFFF") 
                 nutritional_goals_label.grid(row=19, column=0, padx=10, pady=5, 
 sticky="w") 
-                self.nutritional_goals_combo = 
-ttk.Combobox(self.frame_in_canvas, 
+                self.nutritional_goals_combo = ttk.Combobox(self.frame_in_canvas, 
 values=self.select_distinct_nutritional_goals(), 
 font=self.manage_font.medium_bold_letters_font, width=50) 
                 self.nutritional_goals_combo.grid(row=19, column=1, padx=10, 
@@ -1124,8 +1100,7 @@ self.meal_types_var[4])] if value.get() == "1"]
         recommendation_algorithm = GymMealRecommendationAlgorithm() 
         recommendation_algorithm.load_data() 
         recommendation_algorithm.preprocess_data() 
-        recommended_meal_details = 
-recommendation_algorithm.get_recommendation(user_input) 
+        recommended_meal_details = recommendation_algorithm.get_recommendation(user_input) 
  
         if self.meal_recommendation_frame: 
             self.meal_recommendation_frame.destroy() 
@@ -1186,14 +1161,11 @@ fat, carbohydrates, ingredients, cooking_time, image_path, file_path):
             self.error_string = "" 
  
             if not item_name and not item_type: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter the item 
-name and type" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter the item name and type" 
             elif not item_name: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter a valid 
-item name" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter a valid item name" 
             elif not item_type: 
-                self.error_string = f"Error: \n\n \u26A0 Please enter a valid 
-item type" 
+                self.error_string = f"Error: \n\n \u26A0 Please enter a valid item type" 
  
             if not self.error_string: 
                 self.cursor.execute(''' 
@@ -1207,12 +1179,10 @@ self.member_id, image_path, file_path))
 
                 self.conn.commit() 
  
-                self.success_string = "Success: \n\n \u2705 Your meal had been 
-added successfully!" 
+                self.success_string = "Success: \n\n \u2705 Your meal had been added successfully!" 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while adding the 
-custom meal: {e}") 
+            messagebox.showerror("Error", f"An error occurred while adding the custom meal: {e}") 
  
         finally: 
             if self.error_string: 
@@ -1240,8 +1210,7 @@ custom meal: {e}")
                 return meal_names 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
             return [] 
  
     def get_meal_schedule_data(self, date, time, meal_type): 
@@ -1274,8 +1243,7 @@ self.member_id))
             return meal_names 
  
         except sqlite3.Error as e: 
-            messagebox.showerror("Error", f"An error occurred while accessing 
-the database: {e}") 
+            messagebox.showerror("Error", f"An error occurred while accessing the database: {e}") 
             return [] 
  
          
